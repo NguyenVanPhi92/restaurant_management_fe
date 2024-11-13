@@ -1,4 +1,4 @@
-'use client' // mode dev client
+'use client' // use client mode
 
 import { useAppStore } from '@/components/app-provider'
 import { getAccessTokenFromLocalStorage, getRefreshTokenFromLocalStorage } from '@/lib/utils'

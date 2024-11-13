@@ -1,23 +1,22 @@
-'use client'
+'use client' // use client mode
+import { useAppStore } from '@/components/app-provider'
+import SearchParamsLoader, { useSearchParamsLoader } from '@/components/search-params-loader'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Form, FormField, FormItem, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { useForm } from 'react-hook-form'
-import { Form, FormField, FormItem, FormMessage } from '@/components/ui/form'
+import { toast } from '@/components/ui/use-toast'
+import envConfig from '@/config'
+import { generateSocketInstace, handleErrorApi } from '@/lib/utils'
+import { Link, useRouter } from '@/navigation'
+import { useLoginMutation } from '@/queries/useAuth'
 import { LoginBody, LoginBodyType } from '@/schemaValidations/auth.schema'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useLoginMutation } from '@/queries/useAuth'
-import { toast } from '@/components/ui/use-toast'
-import { generateSocketInstace, handleErrorApi } from '@/lib/utils'
-import { useRouter } from '@/navigation'
-import { useEffect } from 'react'
-import { useAppStore } from '@/components/app-provider'
-import envConfig from '@/config'
-import { Link } from '@/navigation'
-import { useTranslations } from 'next-intl'
-import SearchParamsLoader, { useSearchParamsLoader } from '@/components/search-params-loader'
 import { LoaderCircle } from 'lucide-react'
+import { useTranslations } from 'next-intl'
+import { useEffect } from 'react'
+import { useForm } from 'react-hook-form'
 
 const getOauthGoogleUrl = () => {
     const rootUrl = 'https://accounts.google.com/o/oauth2/v2/auth'
@@ -35,6 +34,7 @@ const getOauthGoogleUrl = () => {
     const qs = new URLSearchParams(options)
     return `${rootUrl}?${qs.toString()}`
 }
+
 const googleOauthUrl = getOauthGoogleUrl()
 
 export default function LoginForm() {
@@ -61,6 +61,7 @@ export default function LoginForm() {
         }
     }, [clearTokens, setRole])
 
+    // handle event
     const onSubmit = async (data: LoginBodyType) => {
         // Khi nhấn submit thì React hook form sẽ validate cái form bằng zod schema ở client trước
         // Nếu không pass qua vòng này thì sẽ không gọi api
