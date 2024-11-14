@@ -175,6 +175,7 @@ const request = async <Response>(
     return data
 }
 
+// create api method
 const http = {
     get<Response>(url: string, options?: Omit<CustomOptions, 'body'> | undefined) {
         return request<Response>('GET', url, options)
