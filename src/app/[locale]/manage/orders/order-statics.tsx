@@ -1,18 +1,18 @@
-import { Fragment, useState } from 'react'
-import { Users } from 'lucide-react'
-import { Separator } from '@/components/ui/separator'
-import { OrderStatusIcon, cn, getVietnameseOrderStatus } from '@/lib/utils'
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
-import { OrderStatus, OrderStatusValues } from '@/constants/type'
-import { TableListResType } from '@/schemaValidations/table.schema'
-import { Badge } from '@/components/ui/badge'
+import OrderGuestDetail from '@/app/[locale]/manage/orders/order-guest-detail'
 import {
     ServingGuestByTableNumber,
     Statics,
     StatusCountObject
 } from '@/app/[locale]/manage/orders/order-table'
+import { Badge } from '@/components/ui/badge'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
-import OrderGuestDetail from '@/app/[locale]/manage/orders/order-guest-detail'
+import { Separator } from '@/components/ui/separator'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
+import { OrderStatus, OrderStatusValues } from '@/constants/type'
+import { OrderStatusIcon, cn, getVietnameseOrderStatus } from '@/lib/utils'
+import { TableListResType } from '@/schemaValidations/table.schema'
+import { Users } from 'lucide-react'
+import { Fragment, useState } from 'react'
 
 // Ví dụ:
 // const statics: Statics = {
@@ -53,6 +53,7 @@ export default function OrderStatics({
 }) {
     const [selectedTableNumber, setSelectedTableNumber] = useState<number>(0)
     const selectedServingGuest = servingGuestByTableNumber[selectedTableNumber]
+
     return (
         <Fragment>
             <Dialog

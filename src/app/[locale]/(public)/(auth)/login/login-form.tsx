@@ -18,6 +18,7 @@ import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
+// Auth Google
 const getOauthGoogleUrl = () => {
     const rootUrl = 'https://accounts.google.com/o/oauth2/v2/auth'
     const options = {

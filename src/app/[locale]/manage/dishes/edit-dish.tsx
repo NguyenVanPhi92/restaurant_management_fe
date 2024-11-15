@@ -78,6 +78,7 @@ export default function EditDish({
             })
         }
     }, [data, form])
+
     const onSubmit = async (values: UpdateDishBodyType) => {
         if (updateDishMutation.isPending) return
         try {

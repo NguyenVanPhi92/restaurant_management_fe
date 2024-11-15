@@ -1,20 +1,20 @@
 'use client'
 
-import { DotsHorizontalIcon } from '@radix-ui/react-icons'
+import AddDish from '@/app/[locale]/manage/dishes/add-dish'
+import EditDish from '@/app/[locale]/manage/dishes/edit-dish'
+import AutoPagination from '@/components/auto-pagination'
 import {
-    ColumnDef,
-    ColumnFiltersState,
-    SortingState,
-    VisibilityState,
-    flexRender,
-    getCoreRowModel,
-    getFilteredRowModel,
-    getPaginationRowModel,
-    getSortedRowModel,
-    useReactTable
-} from '@tanstack/react-table'
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle
+} from '@/components/ui/alert-dialog'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
-import DOMPurify from 'dompurify'
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -32,29 +32,30 @@ import {
     TableHeader,
     TableRow
 } from '@/components/ui/table'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { createContext, useContext, useEffect, useState } from 'react'
-import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle
-} from '@/components/ui/alert-dialog'
-import { formatCurrency, getVietnameseDishStatus, handleErrorApi } from '@/lib/utils'
-import { useSearchParams } from 'next/navigation'
-import AutoPagination from '@/components/auto-pagination'
-import { DishListResType } from '@/schemaValidations/dish.schema'
-import EditDish from '@/app/[locale]/manage/dishes/edit-dish'
-import AddDish from '@/app/[locale]/manage/dishes/add-dish'
-import { useDeleteDishMutation, useDishListQuery } from '@/queries/useDish'
 import { toast } from '@/components/ui/use-toast'
+import { formatCurrency, getVietnameseDishStatus, handleErrorApi } from '@/lib/utils'
+import { useDeleteDishMutation, useDishListQuery } from '@/queries/useDish'
+import { DishListResType } from '@/schemaValidations/dish.schema'
+import { DotsHorizontalIcon } from '@radix-ui/react-icons'
+import {
+    ColumnDef,
+    ColumnFiltersState,
+    SortingState,
+    VisibilityState,
+    flexRender,
+    getCoreRowModel,
+    getFilteredRowModel,
+    getPaginationRowModel,
+    getSortedRowModel,
+    useReactTable
+} from '@tanstack/react-table'
+import DOMPurify from 'dompurify'
+import { useSearchParams } from 'next/navigation'
+import { createContext, useContext, useEffect, useState } from 'react'
 
 type DishItem = DishListResType['data'][0]
 
+// Context API
 const DishTableContext = createContext<{
     setDishIdEdit: (value: number) => void
     dishIdEdit: number | undefined

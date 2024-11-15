@@ -12,6 +12,7 @@ import { Inter as FontSans } from 'next/font/google'
 import NextTopLoader from 'nextjs-toploader'
 import './globals.css'
 
+// config font
 const fontSans = FontSans({
     subsets: ['latin'],
     variable: '--font-sans'

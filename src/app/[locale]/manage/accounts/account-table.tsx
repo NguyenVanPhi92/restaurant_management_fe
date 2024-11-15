@@ -16,6 +16,20 @@ import {
 
 import { Button } from '@/components/ui/button'
 
+import AddEmployee from '@/app/[locale]/manage/accounts/add-employee'
+import EditEmployee from '@/app/[locale]/manage/accounts/edit-employee'
+import AutoPagination from '@/components/auto-pagination'
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle
+} from '@/components/ui/alert-dialog'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -33,29 +47,16 @@ import {
     TableHeader,
     TableRow
 } from '@/components/ui/table'
-import { AccountListResType, AccountType } from '@/schemaValidations/account.schema'
-import AddEmployee from '@/app/[locale]/manage/accounts/add-employee'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import EditEmployee from '@/app/[locale]/manage/accounts/edit-employee'
-import { createContext, useContext, useEffect, useState } from 'react'
-import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle
-} from '@/components/ui/alert-dialog'
-import { useSearchParams } from 'next/navigation'
-import AutoPagination from '@/components/auto-pagination'
-import { useDeleteAccountMutation, useGetAccountList } from '@/queries/useAccount'
 import { toast } from '@/components/ui/use-toast'
 import { handleErrorApi } from '@/lib/utils'
+import { useDeleteAccountMutation, useGetAccountList } from '@/queries/useAccount'
+import { AccountListResType, AccountType } from '@/schemaValidations/account.schema'
+import { useSearchParams } from 'next/navigation'
+import { createContext, useContext, useEffect, useState } from 'react'
 
 type AccountItem = AccountListResType['data'][0]
 
+// Context API
 const AccountTableContext = createContext<{
     setEmployeeIdEdit: (value: number) => void
     employeeIdEdit: number | undefined

@@ -1,4 +1,8 @@
 'use client' // use client mode
+import Quantity from '@/app/[locale]/guest/menu/quantity'
+import GuestsDialog from '@/app/[locale]/manage/orders/guests-dialog'
+import { TablesDialog } from '@/app/[locale]/manage/orders/tables-dialog'
+import { Button } from '@/components/ui/button'
 import {
     Dialog,
     DialogContent,
@@ -7,28 +11,24 @@ import {
     DialogTitle,
     DialogTrigger
 } from '@/components/ui/dialog'
-import { PlusCircle } from 'lucide-react'
-import { useMemo, useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { GuestLoginBody, GuestLoginBodyType } from '@/schemaValidations/guest.schema'
 import { Form, FormField, FormItem, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Button } from '@/components/ui/button'
-import { TablesDialog } from '@/app/[locale]/manage/orders/tables-dialog'
-import { GetListGuestsResType } from '@/schemaValidations/account.schema'
 import { Switch } from '@/components/ui/switch'
-import GuestsDialog from '@/app/[locale]/manage/orders/guests-dialog'
-import { CreateOrdersBodyType } from '@/schemaValidations/order.schema'
-import Quantity from '@/app/[locale]/guest/menu/quantity'
-import Image from 'next/image'
-import { cn, formatCurrency, handleErrorApi } from '@/lib/utils'
+import { toast } from '@/components/ui/use-toast'
 import { DishStatus } from '@/constants/type'
+import { cn, formatCurrency, handleErrorApi } from '@/lib/utils'
+import { useCreateGuestMutation } from '@/queries/useAccount'
 import { useDishListQuery } from '@/queries/useDish'
 import { useCreateOrderMutation } from '@/queries/useOrder'
-import { useCreateGuestMutation } from '@/queries/useAccount'
-import { toast } from '@/components/ui/use-toast'
+import { GetListGuestsResType } from '@/schemaValidations/account.schema'
+import { GuestLoginBody, GuestLoginBodyType } from '@/schemaValidations/guest.schema'
+import { CreateOrdersBodyType } from '@/schemaValidations/order.schema'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { PlusCircle } from 'lucide-react'
+import Image from 'next/image'
+import { useMemo, useState } from 'react'
+import { useForm } from 'react-hook-form'
 
 export default function AddOrder() {
     const [open, setOpen] = useState(false)
@@ -58,6 +58,7 @@ export default function AddOrder() {
     const name = form.watch('name')
     const tableNumber = form.watch('tableNumber')
 
+    // handle event
     const handleQuantityChange = (dishId: number, quantity: number) => {
         setOrders((prevOrders) => {
             if (quantity === 0) {

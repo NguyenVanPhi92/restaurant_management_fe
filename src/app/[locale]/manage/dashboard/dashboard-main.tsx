@@ -11,6 +11,7 @@ import { useState } from 'react'
 
 const initFromDate = startOfDay(new Date())
 const initToDate = endOfDay(new Date())
+
 export default function DashboardMain() {
     const [fromDate, setFromDate] = useState(initFromDate)
     const [toDate, setToDate] = useState(initToDate)

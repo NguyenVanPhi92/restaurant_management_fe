@@ -1,3 +1,4 @@
+import AutoPagination from '@/components/auto-pagination'
 import { Button } from '@/components/ui/button'
 import {
     Dialog,
@@ -6,6 +7,7 @@ import {
     DialogTitle,
     DialogTrigger
 } from '@/components/ui/dialog'
+import { Input } from '@/components/ui/input'
 import {
     Table,
     TableBody,
@@ -14,9 +16,9 @@ import {
     TableHeader,
     TableRow
 } from '@/components/ui/table'
-import AutoPagination from '@/components/auto-pagination'
+import { formatCurrency, getVietnameseDishStatus, simpleMatchText } from '@/lib/utils'
+import { useDishListQuery } from '@/queries/useDish'
 import { DishListResType } from '@/schemaValidations/dish.schema'
-import { useEffect, useState } from 'react'
 import {
     ColumnDef,
     ColumnFiltersState,
@@ -29,10 +31,8 @@ import {
     getSortedRowModel,
     useReactTable
 } from '@tanstack/react-table'
-import { formatCurrency, getVietnameseDishStatus, simpleMatchText } from '@/lib/utils'
-import { Input } from '@/components/ui/input'
 import Image from 'next/image'
-import { useDishListQuery } from '@/queries/useDish'
+import { useEffect, useState } from 'react'
 
 type DishItem = DishListResType['data'][0]
 

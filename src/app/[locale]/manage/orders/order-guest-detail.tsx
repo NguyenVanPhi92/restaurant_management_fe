@@ -48,6 +48,7 @@ export default function OrderGuestDetail({
             })
         }
     }
+
     return (
         <div className='space-y-2 text-sm'>
             {guest && (

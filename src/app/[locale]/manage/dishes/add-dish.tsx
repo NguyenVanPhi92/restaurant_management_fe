@@ -1,4 +1,6 @@
 'use client'
+import revalidateApiRequest from '@/apiRequests/revalidate'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import {
     Dialog,
@@ -8,17 +10,9 @@ import {
     DialogTitle,
     DialogTrigger
 } from '@/components/ui/dialog'
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { PlusCircle, Upload } from 'lucide-react'
-import { useMemo, useRef, useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { getVietnameseDishStatus, handleErrorApi } from '@/lib/utils'
-import { CreateDishBody, CreateDishBodyType } from '@/schemaValidations/dish.schema'
-import { DishStatus, DishStatusValues } from '@/constants/type'
 import {
     Select,
     SelectContent,
@@ -27,10 +21,16 @@ import {
     SelectValue
 } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
+import { toast } from '@/components/ui/use-toast'
+import { DishStatus, DishStatusValues } from '@/constants/type'
+import { getVietnameseDishStatus, handleErrorApi } from '@/lib/utils'
 import { useAddDishMutation } from '@/queries/useDish'
 import { useUploadMediaMutation } from '@/queries/useMedia'
-import { toast } from '@/components/ui/use-toast'
-import revalidateApiRequest from '@/apiRequests/revalidate'
+import { CreateDishBody, CreateDishBodyType } from '@/schemaValidations/dish.schema'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { PlusCircle, Upload } from 'lucide-react'
+import { useMemo, useRef, useState } from 'react'
+import { useForm } from 'react-hook-form'
 
 export default function AddDish() {
     const [file, setFile] = useState<File | null>(null)
@@ -56,6 +56,8 @@ export default function AddDish() {
         }
         return image
     }, [file, image])
+
+    // handle event
     const reset = () => {
         form.reset()
         setFile(null)

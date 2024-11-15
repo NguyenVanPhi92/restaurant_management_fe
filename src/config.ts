@@ -1,5 +1,6 @@
 import { z } from 'zod'
 
+// khai báo validate biến môi trường env
 const configSchema = z.object({
     NEXT_PUBLIC_API_ENDPOINT: z.string(),
     NEXT_PUBLIC_URL: z.string(),
@@ -7,6 +8,7 @@ const configSchema = z.object({
     NEXT_PUBLIC_GOOGLE_AUTHORIZED_REDIRECT_URI: z.string()
 })
 
+// so sánh xem env có khớp hay không
 const configProject = configSchema.safeParse({
     NEXT_PUBLIC_API_ENDPOINT: process.env.NEXT_PUBLIC_API_ENDPOINT,
     NEXT_PUBLIC_URL: process.env.NEXT_PUBLIC_URL,
@@ -15,6 +17,7 @@ const configProject = configSchema.safeParse({
         process.env.NEXT_PUBLIC_GOOGLE_AUTHORIZED_REDIRECT_URI
 })
 
+//  nếu không khớp
 if (!configProject.success) {
     console.error(configProject.error.errors)
     throw new Error('Các khai báo biến môi trường không hợp lệ')

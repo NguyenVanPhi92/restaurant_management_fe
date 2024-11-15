@@ -127,6 +127,7 @@ export default function AutoPagination({
                 )
             })
     }
+
     return (
         <Pagination>
             <PaginationContent>

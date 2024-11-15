@@ -121,6 +121,7 @@ export default function GuestsDialog({ onChoose }: { onChoose: (guest: GuestItem
         })
     }, [table])
 
+    // handle event
     const choose = (guest: GuestItem) => {
         onChoose(guest)
         setOpen(false)
