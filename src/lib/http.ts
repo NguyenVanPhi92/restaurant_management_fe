@@ -24,6 +24,7 @@ type EntityErrorPayload = {
     }[]
 }
 
+// catch error http api
 export class HttpError extends Error {
     status: number
     payload: {
@@ -45,6 +46,7 @@ export class HttpError extends Error {
     }
 }
 
+// catch error status vd: 422 401
 export class EntityError extends HttpError {
     status: typeof ENTITY_ERROR_STATUS
     payload: EntityErrorPayload

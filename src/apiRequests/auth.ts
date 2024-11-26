@@ -13,8 +13,9 @@ const authApiRequest = {
         payload: RefreshTokenResType
     }> | null,
 
+    // server login LoginResType: dinh nghia kieu tra ve
     sLogin: (body: LoginBodyType) => http.post<LoginResType>('/auth/login', body),
-
+    // client login
     login: (body: LoginBodyType) =>
         http.post<LoginResType>('/api/auth/login', body, {
             baseUrl: ''
