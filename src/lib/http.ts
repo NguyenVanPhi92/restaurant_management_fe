@@ -64,7 +64,7 @@ export class EntityError extends HttpError {
 }
 
 let clientLogoutRequest: null | Promise<any> = null
-const isClient = typeof window !== 'undefined'
+const isClient = typeof window !== 'undefined' //Check current code running on server or client
 
 const request = async <Response>(
     method: 'GET' | 'POST' | 'PUT' | 'DELETE',
