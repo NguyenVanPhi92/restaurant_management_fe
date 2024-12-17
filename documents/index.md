@@ -6,4 +6,4 @@ ERD: https://dbdiagram.io/d/Quan-ly-quan-an-665991b3b65d9338792b66b2"
 
 config http api fetch khong dung axios
 
-học đến bào 6
+học đến bài 6
