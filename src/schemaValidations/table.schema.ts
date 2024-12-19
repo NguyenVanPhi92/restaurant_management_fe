@@ -36,7 +36,5 @@ export const UpdateTableBody = z.object({
 })
 export type UpdateTableBodyType = z.TypeOf<typeof UpdateTableBody>
 
-export const TableParams = z.object({
-    number: z.coerce.number()
-})
+export const TableParams = z.object({ number: z.coerce.number() })
 export type TableParamsType = z.TypeOf<typeof TableParams>

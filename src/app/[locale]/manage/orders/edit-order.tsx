@@ -77,6 +77,7 @@ export default function EditOrder({
         }
     }, [data, form])
 
+    // handle submit
     const onSubmit = async (values: UpdateOrderBodyType) => {
         if (updateOrderMutation.isPending) return
         try {
@@ -97,10 +98,7 @@ export default function EditOrder({
             })
         }
     }
-
-    const reset = () => {
-        setId(undefined)
-    }
+    const reset = () => setId(undefined)
 
     return (
         <Dialog

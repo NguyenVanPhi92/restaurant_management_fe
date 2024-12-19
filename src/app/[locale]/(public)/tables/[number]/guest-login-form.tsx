@@ -33,9 +33,7 @@ export default function GuestLoginForm() {
     })
 
     useEffect(() => {
-        if (!token) {
-            router.push('/')
-        }
+        if (!token) router.push('/')
     }, [token, router])
 
     // handle event

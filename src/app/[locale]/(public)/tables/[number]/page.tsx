@@ -8,12 +8,12 @@ type Props = {
     params: { number: string; locale: Locale }
     searchParams: { [key: string]: string | string[] | undefined }
 }
+
 export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
     const t = await getTranslations({
         locale: params.locale,
         namespace: 'LoginGuest'
     })
-
     const url = envConfig.NEXT_PUBLIC_URL + `/${params.locale}/tables/${params.number}`
 
     return {

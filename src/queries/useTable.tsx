@@ -31,7 +31,6 @@ export const useAddTableMutation = () => {
 
 export const useUpdateTableMutation = () => {
     const queryClient = useQueryClient()
-
     return useMutation({
         mutationFn: ({ id, ...body }: UpdateTableBodyType & { id: number }) =>
             tableApiRequest.updateTable(id, body),
@@ -46,7 +45,6 @@ export const useUpdateTableMutation = () => {
 
 export const useDeleteTableMutation = () => {
     const queryClient = useQueryClient()
-
     return useMutation({
         mutationFn: tableApiRequest.deleteTable,
         onSuccess: () => {

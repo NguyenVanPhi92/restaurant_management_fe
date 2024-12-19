@@ -10,6 +10,7 @@ import { Package2, PanelLeft } from 'lucide-react'
 export default function MobileNavLinks() {
     const pathname = usePathname()
     const role = useAppStore((state) => state.role)
+
     return (
         <Sheet>
             <SheetTrigger asChild>

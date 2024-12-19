@@ -61,6 +61,8 @@ export default function NavItems({ className }: { className?: string }) {
     const disconnectSocket = useAppStore((state) => state.disconnectSocket)
     const logoutMutation = useLogoutMutation()
     const router = useRouter()
+
+    // handle event
     const logout = async () => {
         if (logoutMutation.isPending) return
         try {

@@ -9,11 +9,11 @@ export default function GoogleTag() {
                 id='gtag-init'
                 dangerouslySetInnerHTML={{
                     __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-G4XRFCFWTH');
-        `
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', 'G-G4XRFCFWTH');
+                        `
                 }}
             />
         </Fragment>

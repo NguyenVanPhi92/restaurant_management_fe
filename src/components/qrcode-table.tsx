@@ -30,6 +30,7 @@ export default function QRCodeTable({
         canvasContext.fillText(`Bàn số ${tableNumber}`, canvas.width / 2, canvas.width + 20)
         canvasContext.fillText(`Quét mã QR để gọi món`, canvas.width / 2, canvas.width + 50)
         const virtalCanvas = document.createElement('canvas')
+
         QRCode.toCanvas(
             virtalCanvas,
             getTableLink({
@@ -46,5 +47,6 @@ export default function QRCodeTable({
             }
         )
     }, [token, width, tableNumber])
+
     return <canvas ref={canvasRef} />
 }

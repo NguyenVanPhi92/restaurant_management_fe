@@ -49,6 +49,7 @@ export default function UpdateProfileForm() {
         return avatar
     }, [avatar, file])
 
+    // handle submit
     const reset = () => {
         form.reset()
         setFile(null)

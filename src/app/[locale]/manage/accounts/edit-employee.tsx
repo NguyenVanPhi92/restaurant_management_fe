@@ -51,7 +51,6 @@ export default function EditEmployee({
     })
     const updateAccountMutation = useUpdateAccountMutation()
     const uploadMediaMutation = useUploadMediaMutation()
-
     const form = useForm<UpdateEmployeeAccountBodyType>({
         resolver: zodResolver(UpdateEmployeeAccountBody),
         defaultValues: {
@@ -89,6 +88,7 @@ export default function EditEmployee({
         }
     }, [data, form])
 
+    // handle event
     const onSubmit = async (values: UpdateEmployeeAccountBodyType) => {
         if (updateAccountMutation.isPending) return
         try {
@@ -107,9 +107,7 @@ export default function EditEmployee({
                 }
             }
             const result = await updateAccountMutation.mutateAsync(body)
-            toast({
-                description: result.payload.message
-            })
+            toast({ description: result.payload.message })
             reset()
             onSubmitSuccess && onSubmitSuccess()
         } catch (error) {

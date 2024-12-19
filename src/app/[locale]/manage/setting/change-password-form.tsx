@@ -21,6 +21,8 @@ export default function ChangePasswordForm() {
             confirmPassword: ''
         }
     })
+
+    // handle submit
     const onSubmit = async (data: ChangePasswordBodyType) => {
         if (changePasswordMutation.isPending) return
         try {
@@ -36,9 +38,7 @@ export default function ChangePasswordForm() {
         }
     }
 
-    const reset = () => {
-        form.reset()
-    }
+    const reset = () => form.reset()
 
     return (
         <Form {...form}>

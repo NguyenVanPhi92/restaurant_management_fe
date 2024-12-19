@@ -24,6 +24,7 @@ export default async function Home({ params: { locale } }: { params: { locale: s
     unstable_setRequestLocale(locale)
     const t = await getTranslations('HomePage')
     let dishList: DishListResType['data'] = []
+
     try {
         const result = await dishApiRequest.list()
         const {
@@ -33,6 +34,7 @@ export default async function Home({ params: { locale } }: { params: { locale: s
     } catch (error) {
         return <div>Something went wrong</div>
     }
+
     return (
         <div className='w-full space-y-4'>
             <section className='relative z-10'>

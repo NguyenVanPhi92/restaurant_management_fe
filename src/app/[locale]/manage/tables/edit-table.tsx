@@ -61,6 +61,7 @@ export default function EditTable({
         }
     }, [data, form])
 
+    // handle submit
     const onSubmit = async (values: UpdateTableBodyType) => {
         if (updateTableMutation.isPending) return
         try {
@@ -82,9 +83,7 @@ export default function EditTable({
         }
     }
 
-    const reset = () => {
-        setId(undefined)
-    }
+    const reset = () => setId(undefined)
 
     return (
         <Dialog

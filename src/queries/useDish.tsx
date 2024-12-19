@@ -31,7 +31,6 @@ export const useAddDishMutation = () => {
 
 export const useUpdateDishMutation = () => {
     const queryClient = useQueryClient()
-
     return useMutation({
         mutationFn: ({ id, ...body }: UpdateDishBodyType & { id: number }) =>
             dishApiRequest.updateDish(id, body),
@@ -46,7 +45,6 @@ export const useUpdateDishMutation = () => {
 
 export const useDeleteDishMutation = () => {
     const queryClient = useQueryClient()
-
     return useMutation({
         mutationFn: dishApiRequest.deleteDish,
         onSuccess: () => {

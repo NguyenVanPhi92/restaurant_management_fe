@@ -39,9 +39,9 @@ export default function AddTable() {
             status: TableStatus.Hidden
         }
     })
-    const reset = () => {
-        form.reset()
-    }
+
+    // handle submit
+    const reset = () => form.reset()
     const onSubmit = async (values: CreateTableBodyType) => {
         if (addTableMutation.isPending) return
         try {

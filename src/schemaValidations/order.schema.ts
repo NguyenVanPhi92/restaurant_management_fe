@@ -45,9 +45,7 @@ export const UpdateOrderBody = z.object({
 })
 export type UpdateOrderBodyType = z.TypeOf<typeof UpdateOrderBody>
 
-export const OrderParam = z.object({
-    orderId: z.coerce.number()
-})
+export const OrderParam = z.object({ orderId: z.coerce.number() })
 export type OrderParamType = z.TypeOf<typeof OrderParam>
 
 export const UpdateOrderRes = z.object({
@@ -76,9 +74,7 @@ export const GetOrderDetailRes = z.object({
 })
 export type GetOrderDetailResType = z.TypeOf<typeof GetOrderDetailRes>
 
-export const PayGuestOrdersBody = z.object({
-    guestId: z.number()
-})
+export const PayGuestOrdersBody = z.object({ guestId: z.number() })
 export type PayGuestOrdersBodyType = z.TypeOf<typeof PayGuestOrdersBody>
 
 export const PayGuestOrdersRes = GetOrdersRes

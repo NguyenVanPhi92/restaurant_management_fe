@@ -14,7 +14,6 @@ export const AccountListRes = z.object({
     data: z.array(AccountSchema),
     message: z.string()
 })
-// export type for typescript
 export type AccountListResType = z.TypeOf<typeof AccountListRes>
 
 export const AccountRes = z

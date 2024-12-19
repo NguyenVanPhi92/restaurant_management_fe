@@ -26,6 +26,7 @@ export default function MenuOrder() {
         }, 0)
     }, [dishes, orders])
 
+    // handle event
     const handleQuantityChange = (dishId: number, quantity: number) => {
         setOrders((prevOrders) => {
             if (quantity === 0) {

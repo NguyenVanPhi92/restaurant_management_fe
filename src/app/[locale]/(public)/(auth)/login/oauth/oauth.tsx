@@ -23,7 +23,6 @@ export default function Oauth() {
     const count = useRef(0)
     const setSocket = useAppStore((state) => state.setSocket)
     const setRole = useAppStore((state) => state.setRole)
-
     const searchParams = useSearchParams()
     const accessToken = searchParams.get('accessToken')
     const refreshToken = searchParams.get('refreshToken')

@@ -47,6 +47,7 @@ export default async function RootLayout({
 }>) {
     unstable_setRequestLocale(locale)
     const messages = await getMessages()
+
     return (
         <html lang={locale} suppressHydrationWarning>
             <body

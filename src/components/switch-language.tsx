@@ -1,4 +1,5 @@
 'use client' // use client mode
+
 import {
     Select,
     SelectContent,
@@ -16,6 +17,7 @@ export default function SwitchLanguage() {
     const locale = useLocale()
     const pathname = usePathname()
     const router = useRouter()
+
     return (
         <Select
             value={locale}

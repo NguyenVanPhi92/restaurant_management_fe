@@ -1,5 +1,4 @@
 'use client' // use client mode
-
 import { CaretSortIcon, DotsHorizontalIcon } from '@radix-ui/react-icons'
 import {
     ColumnDef,
@@ -13,8 +12,6 @@ import {
     getSortedRowModel,
     useReactTable
 } from '@tanstack/react-table'
-
-import { Button } from '@/components/ui/button'
 
 import AddEmployee from '@/app/[locale]/manage/accounts/add-employee'
 import EditEmployee from '@/app/[locale]/manage/accounts/edit-employee'
@@ -30,6 +27,7 @@ import {
     AlertDialogTitle
 } from '@/components/ui/alert-dialog'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Button } from '@/components/ui/button'
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -145,6 +143,8 @@ function AlertDialogDeleteAccount({
     setEmployeeDelete: (value: AccountItem | null) => void
 }) {
     const { mutateAsync } = useDeleteAccountMutation()
+
+    //handle event
     const deleteAccount = async () => {
         if (employeeDelete) {
             try {
@@ -188,8 +188,8 @@ function AlertDialogDeleteAccount({
         </AlertDialog>
     )
 }
-// Số lượng item trên 1 trang
-const PAGE_SIZE = 10
+
+const PAGE_SIZE = 10 // Số lượng item trên 1 trang
 export default function AccountTable() {
     const searchParam = useSearchParams()
     const page = searchParam.get('page') ? Number(searchParam.get('page')) : 1

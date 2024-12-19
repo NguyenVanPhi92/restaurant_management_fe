@@ -1,4 +1,5 @@
 'use client' // use client mode
+
 import { type ReadonlyURLSearchParams, useSearchParams } from 'next/navigation'
 import React, { Suspense, useEffect, useState } from 'react'
 

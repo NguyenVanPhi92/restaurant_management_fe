@@ -48,9 +48,7 @@ export const useAppStore = create<AppStoreType>((set) => ({
     role: undefined as RoleType | undefined,
     setRole: (role?: RoleType | undefined) => {
         set({ role, isAuth: Boolean(role) })
-        if (!role) {
-            removeTokensFromLocalStorage()
-        }
+        if (!role) removeTokensFromLocalStorage()
     },
     socket: undefined as Socket | undefined,
     setSocket: (socket?: Socket | undefined) => set({ socket }),

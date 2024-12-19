@@ -115,7 +115,6 @@ export default function OrderTable() {
             })
         }
     }
-    ///
     const table = useReactTable({
         data: orderList,
         columns: orderTableColumns,

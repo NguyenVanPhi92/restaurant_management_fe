@@ -52,6 +52,7 @@ export default function AddEmployee() {
         return avatar
     }, [file, avatar])
 
+    // handle event
     const reset = () => {
         form.reset()
         setFile(null)
