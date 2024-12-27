@@ -1,7 +1,7 @@
 # Intercepting Route
 
-- Parallel Route (Route song song): Render component (`page.tsx` hoặc `default.tsx`) cùng với route hiện tại
-- Intercepting Route (Route chặn): Khi navigate, thay vì render `page.tsx` đích đến, nó sẽ render `page.tsx` ở route chặn. Điều này không xảy ra khi full page load
+-   Parallel Route (Route song song): Render component (`page.tsx` hoặc `default.tsx`) cùng với route hiện tại
+-   Intercepting Route (Route chặn): Khi navigate, thay vì render `page.tsx` đích đến, nó sẽ render `page.tsx` ở route chặn. Điều này không xảy ra khi full page load
 
 ## Cách hoạt động
 

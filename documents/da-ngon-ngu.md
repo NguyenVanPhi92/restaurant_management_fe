@@ -10,8 +10,8 @@ FrontEnd xử lý text cố định, Backend xử lý nội dụng API
 
 Trong Next.js thì có 2 cách làm đa ngôn ngữ
 
-- i18n Routing: Mỗi ngôn ngữ sẽ có 1 route riêng. Ví dụ `duthanhduoc.com/en`, `duthanhduoc.com/vi`, hoặc `en.duthanhduoc.com`, `vi.duthanhduoc.com`
-- i18n không Routing: Mỗi ngôn ngữ sẽ không có route riêng, mà sẽ dựa vào ngôn ngữ hiện tại để hiển thị nội dung tương ứng.
+-   i18n Routing: Mỗi ngôn ngữ sẽ có 1 route riêng. Ví dụ `duthanhduoc.com/en`, `duthanhduoc.com/vi`, hoặc `en.duthanhduoc.com`, `vi.duthanhduoc.com`
+-   i18n không Routing: Mỗi ngôn ngữ sẽ không có route riêng, mà sẽ dựa vào ngôn ngữ hiện tại để hiển thị nội dung tương ứng.
 
 i18n Routing sẽ tốt hơn cho SEO, vì sẽ có mỗi version website riêng cho từng quốc gia.
 

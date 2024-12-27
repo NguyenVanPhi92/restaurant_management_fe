@@ -10,9 +10,9 @@ Ví dụ tạo file với đường dẫn `app/@modal/page.tsx` thì route segme
 
 Muốn slot active phải đảm bảo
 
-- URL phải khớp với route slot
+-   URL phải khớp với route slot
 
-- Slot phải được dùng trong `layout.tsx`
+-   Slot phải được dùng trong `layout.tsx`
 
 Khi active thì slot sẽ render file `page.tsx` trong slot.
 
@@ -28,8 +28,8 @@ Với trường hợp này, khi full page reload (F5) thì slot sẽ không acti
 
 Ví dụ bạn tạo file `app/@modal/setting/page.tsx` thì lúc này bạn sẽ có 2 slot chung 1 cái tên là `modal`
 
-- Slot 1: `app/@modal/page.tsx` (cái này chúng ta chưa tạo)
-- Slot 2: `app/@modal/setting/page.tsx`
+-   Slot 1: `app/@modal/page.tsx` (cái này chúng ta chưa tạo)
+-   Slot 2: `app/@modal/setting/page.tsx`
 
 Vì 2 slot dùng chung 1 cái tên nên nên 1 lúc chỉ có 1 slot được hiển thị thôi.
 
