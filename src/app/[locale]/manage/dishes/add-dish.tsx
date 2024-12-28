@@ -51,9 +51,7 @@ export default function AddDish() {
     const image = form.watch('image')
     const name = form.watch('name')
     const previewAvatarFromFile = useMemo(() => {
-        if (file) {
-            return URL.createObjectURL(file)
-        }
+        if (file) return URL.createObjectURL(file)
         return image
     }, [file, image])
 
@@ -71,32 +69,22 @@ export default function AddDish() {
                 formData.append('file', file)
                 const uploadImageResult = await uploadMediaMutation.mutateAsync(formData)
                 const imageUrl = uploadImageResult.payload.data
-                body = {
-                    ...values,
-                    image: imageUrl
-                }
+                body = { ...values, image: imageUrl }
             }
             const result = await addDishMutation.mutateAsync(body)
             await revalidateApiRequest('dishes')
-            toast({
-                description: result.payload.message
-            })
+            toast({ description: result.payload.message })
             reset()
             setOpen(false)
         } catch (error) {
-            handleErrorApi({
-                error,
-                setError: form.setError
-            })
+            handleErrorApi({ error, setError: form.setError })
         }
     }
 
     return (
         <Dialog
             onOpenChange={(value) => {
-                if (!value) {
-                    reset()
-                }
+                if (!value) reset()
                 setOpen(value)
             }}
             open={open}

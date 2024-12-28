@@ -61,13 +61,9 @@ export default function AddOrder() {
     // handle event
     const handleQuantityChange = (dishId: number, quantity: number) => {
         setOrders((prevOrders) => {
-            if (quantity === 0) {
-                return prevOrders.filter((order) => order.dishId !== dishId)
-            }
+            if (quantity === 0) return prevOrders.filter((order) => order.dishId !== dishId)
             const index = prevOrders.findIndex((order) => order.dishId === dishId)
-            if (index === -1) {
-                return [...prevOrders, { dishId, quantity }]
-            }
+            if (index === -1) return [...prevOrders, { dishId, quantity }]
             const newOrders = [...prevOrders]
             newOrders[index] = { ...newOrders[index], quantity }
             return newOrders
@@ -85,21 +81,13 @@ export default function AddOrder() {
                 guestId = guestRes.payload.data.id
             }
             if (!guestId) {
-                toast({
-                    description: 'Hãy chọn một khách hàng'
-                })
+                toast({ description: 'Hãy chọn một khách hàng' })
                 return
             }
-            await createOrderMutation.mutateAsync({
-                guestId,
-                orders
-            })
+            await createOrderMutation.mutateAsync({ guestId, orders })
             reset()
         } catch (error) {
-            handleErrorApi({
-                error,
-                setError: form.setError
-            })
+            handleErrorApi({ error, setError: form.setError })
         }
     }
 
@@ -114,9 +102,7 @@ export default function AddOrder() {
     return (
         <Dialog
             onOpenChange={(value) => {
-                if (!value) {
-                    reset()
-                }
+                if (!value) reset()
                 setOpen(value)
             }}
             open={open}
@@ -207,7 +193,7 @@ export default function AddOrder() {
                         <Label htmlFor='selectedGuest'>Khách đã chọn</Label>
                         <div className='col-span-3 w-full gap-4 flex items-center'>
                             <div>
-                                {selectedGuest.name} (#{selectedGuest.id})
+                                {selectedGuest.name} (#{selectedGuest.id}){' '}
                             </div>
                             <div>Bàn: {selectedGuest.tableNumber}</div>
                         </div>

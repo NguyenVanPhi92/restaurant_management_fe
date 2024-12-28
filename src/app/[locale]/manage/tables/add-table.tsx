@@ -46,25 +46,18 @@ export default function AddTable() {
         if (addTableMutation.isPending) return
         try {
             const result = await addTableMutation.mutateAsync(values)
-            toast({
-                description: result.payload.message
-            })
+            toast({ description: result.payload.message })
             reset()
             setOpen(false)
         } catch (error) {
-            handleErrorApi({
-                error,
-                setError: form.setError
-            })
+            handleErrorApi({ error, setError: form.setError })
         }
     }
 
     return (
         <Dialog
             onOpenChange={(value) => {
-                if (!value) {
-                    reset()
-                }
+                if (!value) reset()
                 setOpen(value)
             }}
             open={open}

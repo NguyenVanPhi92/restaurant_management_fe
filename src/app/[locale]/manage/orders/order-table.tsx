@@ -81,10 +81,7 @@ export default function OrderTable() {
     const page = searchParam.get('page') ? Number(searchParam.get('page')) : 1
     const pageIndex = page - 1
     const [orderIdEdit, setOrderIdEdit] = useState<number | undefined>()
-    const orderListQuery = useGetOrderListQuery({
-        fromDate,
-        toDate
-    })
+    const orderListQuery = useGetOrderListQuery({ fromDate, toDate })
     const refetchOrderList = orderListQuery.refetch
     const orderList = orderListQuery.data?.payload.data ?? []
     const tableListQuery = useTableListQuery()
@@ -110,9 +107,7 @@ export default function OrderTable() {
         try {
             await updateOrderMutation.mutateAsync(body)
         } catch (error) {
-            handleErrorApi({
-                error
-            })
+            handleErrorApi({ error })
         }
     }
     const table = useReactTable({
@@ -138,10 +133,7 @@ export default function OrderTable() {
     })
 
     useEffect(() => {
-        table.setPagination({
-            pageIndex,
-            pageSize: PAGE_SIZE
-        })
+        table.setPagination({ pageIndex, pageSize: PAGE_SIZE })
     }, [table, pageIndex])
 
     const resetDateFilter = () => {
@@ -150,9 +142,7 @@ export default function OrderTable() {
     }
 
     useEffect(() => {
-        if (socket?.connected) {
-            onConnect()
-        }
+        if (socket?.connected) onConnect()
 
         function onConnect() {
             console.log(socket?.id)
@@ -164,9 +154,7 @@ export default function OrderTable() {
 
         function refetch() {
             const now = new Date()
-            if (now >= fromDate && now <= toDate) {
-                refetchOrderList()
-            }
+            if (now >= fromDate && now <= toDate) refetchOrderList()
         }
 
         function onUpdateOrder(data: UpdateOrderResType['data']) {

@@ -23,10 +23,7 @@ export default function UpdateProfileForm() {
     const uploadMediaMutation = useUploadMediaMutation()
     const form = useForm<UpdateMeBodyType>({
         resolver: zodResolver(UpdateMeBody),
-        defaultValues: {
-            name: '',
-            avatar: undefined
-        }
+        defaultValues: { name: '', avatar: undefined }
     })
 
     const avatar = form.watch('avatar')
@@ -34,18 +31,13 @@ export default function UpdateProfileForm() {
     useEffect(() => {
         if (data) {
             const { name, avatar } = data.payload.data
-            form.reset({
-                name,
-                avatar: avatar ?? undefined
-            })
+            form.reset({ name, avatar: avatar ?? undefined })
         }
     }, [form, data])
     // Nếu các bạn dùng Next.js 15 (tức React 19) thì không cần dùng useMemo chỗ này
     // const previewAvatar = file ? URL.createObjectURL(file) : avatar
     const previewAvatar = useMemo(() => {
-        if (file) {
-            return URL.createObjectURL(file)
-        }
+        if (file) return URL.createObjectURL(file)
         return avatar
     }, [avatar, file])
 
@@ -64,21 +56,13 @@ export default function UpdateProfileForm() {
                 formData.append('file', file)
                 const uploadImageResult = await uploadMediaMutation.mutateAsync(formData)
                 const imageUrl = uploadImageResult.payload.data
-                body = {
-                    ...values,
-                    avatar: imageUrl
-                }
+                body = { ...values, avatar: imageUrl }
             }
             const result = await updateMeMutation.mutateAsync(body)
-            toast({
-                description: result.payload.message
-            })
+            toast({ description: result.payload.message })
             refetch()
         } catch (error) {
-            handleErrorApi({
-                error,
-                setError: form.setError
-            })
+            handleErrorApi({ error, setError: form.setError })
         }
     }
 
@@ -88,9 +72,7 @@ export default function UpdateProfileForm() {
                 noValidate
                 className='grid auto-rows-max items-start gap-4 md:gap-8'
                 onReset={reset}
-                onSubmit={form.handleSubmit(onSubmit, (e) => {
-                    console.log(e)
-                })}
+                onSubmit={form.handleSubmit(onSubmit, (e) => console.log(e))}
             >
                 <Card x-chunk='dashboard-07-chunk-0'>
                     <CardHeader>

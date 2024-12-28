@@ -101,13 +101,8 @@ export const columns: ColumnDef<TableItem>[] = [
         enableHiding: false,
         cell: function Actions({ row }) {
             const { setTableIdEdit, setTableDelete } = useContext(TableTableContext)
-            const openEditTable = () => {
-                setTableIdEdit(row.original.number)
-            }
-
-            const openDeleteTable = () => {
-                setTableDelete(row.original)
-            }
+            const openEditTable = () => setTableIdEdit(row.original.number)
+            const openDeleteTable = () => setTableDelete(row.original)
             return (
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -141,13 +136,9 @@ function AlertDialogDeleteTable({
             try {
                 const result = await mutateAsync(tableDelete.number)
                 setTableDelete(null)
-                toast({
-                    title: result.payload.message
-                })
+                toast({ title: result.payload.message })
             } catch (error) {
-                handleErrorApi({
-                    error
-                })
+                handleErrorApi({ error })
             }
         }
     }
@@ -155,9 +146,7 @@ function AlertDialogDeleteTable({
         <AlertDialog
             open={Boolean(tableDelete)}
             onOpenChange={(value) => {
-                if (!value) {
-                    setTableDelete(null)
-                }
+                if (!value) setTableDelete(null)
             }}
         >
             <AlertDialogContent>
@@ -222,10 +211,7 @@ export default function TableTable() {
     })
 
     useEffect(() => {
-        table.setPagination({
-            pageIndex,
-            pageSize: PAGE_SIZE
-        })
+        table.setPagination({ pageIndex, pageSize: PAGE_SIZE })
     }, [table, pageIndex])
 
     return (

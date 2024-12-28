@@ -5,9 +5,7 @@ import { Suspense } from 'react'
 export const metadata: Metadata = {
     title: 'Refresh token redirect',
     description: 'Refresh token redirect',
-    robots: {
-        index: false
-    }
+    robots: { index: false }
 }
 
 export default function RefreshTokenPage() {

@@ -16,7 +16,7 @@ export default function Layout({
                     <MobileNavLinks />
                     <div className='relative ml-auto flex-1 md:grow-0'>
                         <div className='flex justify-end'>
-                            <DarkModeToggle />
+                            <DarkModeToggle />{' '}
                         </div>
                     </div>
                     <DropdownAvatar />

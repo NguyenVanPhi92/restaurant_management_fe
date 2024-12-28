@@ -106,10 +106,7 @@ export function DishesDialog({ onChoose }: { onChoose: (dish: DishItem) => void 
     })
 
     useEffect(() => {
-        table.setPagination({
-            pageIndex: 0,
-            pageSize: PAGE_SIZE
-        })
+        table.setPagination({ pageIndex: 0, pageSize: PAGE_SIZE })
     }, [table])
 
     const choose = (dish: DishItem) => {

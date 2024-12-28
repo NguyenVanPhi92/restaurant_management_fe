@@ -38,14 +38,10 @@ export default function OrderGuestDetail({
     const pay = async () => {
         if (payForGuestMutation.isPending || !guest) return
         try {
-            const result = await payForGuestMutation.mutateAsync({
-                guestId: guest.id
-            })
+            const result = await payForGuestMutation.mutateAsync({ guestId: guest.id })
             onPaySuccess && onPaySuccess(result.payload)
         } catch (error) {
-            handleErrorApi({
-                error
-            })
+            handleErrorApi({ error })
         }
     }
 
@@ -115,8 +111,7 @@ export default function OrderGuestDetail({
                                 className='hidden sm:inline'
                                 title={`Tạo: ${formatDateTimeToLocaleString(
                                     order.createdAt
-                                )} | Cập nhật: ${formatDateTimeToLocaleString(order.updatedAt)}
-          `}
+                                )} | Cập nhật: ${formatDateTimeToLocaleString(order.updatedAt)}`}
                             >
                                 {formatDateTimeToLocaleString(order.createdAt)}
                             </span>
@@ -124,8 +119,7 @@ export default function OrderGuestDetail({
                                 className='sm:hidden'
                                 title={`Tạo: ${formatDateTimeToLocaleString(
                                     order.createdAt
-                                )} | Cập nhật: ${formatDateTimeToLocaleString(order.updatedAt)}
-          `}
+                                )} | Cập nhật: ${formatDateTimeToLocaleString(order.updatedAt)}`}
                             >
                                 {formatDateTimeToTimeString(order.createdAt)}
                             </span>

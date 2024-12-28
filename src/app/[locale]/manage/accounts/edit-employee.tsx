@@ -45,10 +45,7 @@ export default function EditEmployee({
 }) {
     const [file, setFile] = useState<File | null>(null)
     const avatarInputRef = useRef<HTMLInputElement | null>(null)
-    const { data } = useGetAccount({
-        id: id as number,
-        enabled: Boolean(id)
-    })
+    const { data } = useGetAccount({ id: id as number, enabled: Boolean(id) })
     const updateAccountMutation = useUpdateAccountMutation()
     const uploadMediaMutation = useUploadMediaMutation()
     const form = useForm<UpdateEmployeeAccountBodyType>({
@@ -67,9 +64,7 @@ export default function EditEmployee({
     const name = form.watch('name')
     const changePassword = form.watch('changePassword')
     const previewAvatarFromFile = useMemo(() => {
-        if (file) {
-            return URL.createObjectURL(file)
-        }
+        if (file) return URL.createObjectURL(file)
         return avatar
     }, [file, avatar])
 
@@ -101,20 +96,14 @@ export default function EditEmployee({
                 formData.append('file', file)
                 const uploadImageResult = await uploadMediaMutation.mutateAsync(formData)
                 const imageUrl = uploadImageResult.payload.data
-                body = {
-                    ...body,
-                    avatar: imageUrl
-                }
+                body = { ...body, avatar: imageUrl }
             }
             const result = await updateAccountMutation.mutateAsync(body)
             toast({ description: result.payload.message })
             reset()
             onSubmitSuccess && onSubmitSuccess()
         } catch (error) {
-            handleErrorApi({
-                error,
-                setError: form.setError
-            })
+            handleErrorApi({ error, setError: form.setError })
         }
     }
 
@@ -127,9 +116,7 @@ export default function EditEmployee({
         <Dialog
             open={Boolean(id)}
             onOpenChange={(value) => {
-                if (!value) {
-                    reset()
-                }
+                if (!value) reset()
             }}
         >
             <DialogContent className='sm:max-w-[600px] max-h-screen overflow-auto'>

@@ -13,21 +13,13 @@ import NextTopLoader from 'nextjs-toploader'
 import './globals.css'
 
 // config font
-const fontSans = FontSans({
-    subsets: ['latin'],
-    variable: '--font-sans'
-})
+const fontSans = FontSans({ subsets: ['latin'], variable: '--font-sans' })
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: Locale } }) {
     const t = await getTranslations({ locale, namespace: 'Brand' })
     return {
-        title: {
-            template: `%s | ${t('title')}`,
-            default: t('defaultTitle')
-        },
-        openGraph: {
-            ...baseOpenGraph
-        }
+        title: { template: `%s | ${t('title')}`, default: t('defaultTitle') },
+        openGraph: { ...baseOpenGraph }
         // other: {
         //   'google-site-verification': 'KKr5Sgn6rrXntMUp1nDIoQR7mJQujE4BExrlgcFvGTg'
         // }

@@ -150,13 +150,9 @@ function AlertDialogDeleteAccount({
             try {
                 const result = await mutateAsync(employeeDelete.id)
                 setEmployeeDelete(null)
-                toast({
-                    title: result.payload.message
-                })
+                toast({ title: result.payload.message })
             } catch (error) {
-                handleErrorApi({
-                    error
-                })
+                handleErrorApi({ error })
             }
         }
     }
@@ -164,9 +160,7 @@ function AlertDialogDeleteAccount({
         <AlertDialog
             open={Boolean(employeeDelete)}
             onOpenChange={(value) => {
-                if (!value) {
-                    setEmployeeDelete(null)
-                }
+                if (!value) setEmployeeDelete(null)
             }}
         >
             <AlertDialogContent>

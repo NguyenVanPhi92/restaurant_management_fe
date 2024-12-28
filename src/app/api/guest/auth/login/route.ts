@@ -30,18 +30,9 @@ export async function POST(request: Request) {
         return Response.json(payload)
     } catch (error) {
         if (error instanceof HttpError) {
-            return Response.json(error.payload, {
-                status: error.status
-            })
+            return Response.json(error.payload, { status: error.status })
         } else {
-            return Response.json(
-                {
-                    message: 'Có lỗi xảy ra'
-                },
-                {
-                    status: 500
-                }
-            )
+            return Response.json({ message: 'Có lỗi xảy ra' }, { status: 500 })
         }
     }
 }

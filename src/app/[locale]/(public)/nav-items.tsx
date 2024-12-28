@@ -71,9 +71,7 @@ export default function NavItems({ className }: { className?: string }) {
             disconnectSocket()
             router.push('/')
         } catch (error: any) {
-            handleErrorApi({
-                error
-            })
+            handleErrorApi({ error })
         }
     }
 

@@ -145,9 +145,9 @@ const orderTableColumns: ColumnDef<OrderItem>[] = [
             }
             return (
                 <Select
-                    onValueChange={(value: (typeof OrderStatusValues)[number]) => {
+                    onValueChange={(value: (typeof OrderStatusValues)[number]) =>
                         changeOrderStatus(value)
-                    }}
+                    }
                     defaultValue={OrderStatus.Pending}
                     value={row.getValue('status')}
                 >

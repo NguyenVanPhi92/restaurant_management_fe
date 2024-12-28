@@ -1,5 +1,4 @@
 'use client' // use client mode
-
 import { useAppStore } from '@/components/app-provider'
 import { toast } from '@/components/ui/use-toast'
 import { decodeToken, generateSocketInstace } from '@/lib/utils'

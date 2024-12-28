@@ -15,11 +15,7 @@ export default function ChangePasswordForm() {
     const changePasswordMutation = useChangePasswordMutation()
     const form = useForm<ChangePasswordBodyType>({
         resolver: zodResolver(ChangePasswordBody),
-        defaultValues: {
-            oldPassword: '',
-            password: '',
-            confirmPassword: ''
-        }
+        defaultValues: { oldPassword: '', password: '', confirmPassword: '' }
     })
 
     // handle submit
@@ -27,14 +23,9 @@ export default function ChangePasswordForm() {
         if (changePasswordMutation.isPending) return
         try {
             const result = await changePasswordMutation.mutateAsync(data)
-            toast({
-                description: result.payload.message
-            })
+            toast({ description: result.payload.message })
         } catch (error) {
-            handleErrorApi({
-                error,
-                setError: form.setError
-            })
+            handleErrorApi({ error, setError: form.setError })
         }
     }
 

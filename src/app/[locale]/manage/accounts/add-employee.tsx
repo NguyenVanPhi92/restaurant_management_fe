@@ -31,7 +31,6 @@ export default function AddEmployee() {
     const [open, setOpen] = useState(false)
     const addAccountMutation = useAddAccountMutation()
     const uploadMediaMutation = useUploadMediaMutation()
-
     const avatarInputRef = useRef<HTMLInputElement | null>(null)
     const form = useForm<CreateEmployeeAccountBodyType>({
         resolver: zodResolver(CreateEmployeeAccountBody),
@@ -46,9 +45,7 @@ export default function AddEmployee() {
     const avatar = form.watch('avatar')
     const name = form.watch('name')
     const previewAvatarFromFile = useMemo(() => {
-        if (file) {
-            return URL.createObjectURL(file)
-        }
+        if (file) return URL.createObjectURL(file)
         return avatar
     }, [file, avatar])
 
@@ -67,22 +64,14 @@ export default function AddEmployee() {
                 formData.append('file', file)
                 const uploadImageResult = await uploadMediaMutation.mutateAsync(formData)
                 const imageUrl = uploadImageResult.payload.data
-                body = {
-                    ...values,
-                    avatar: imageUrl
-                }
+                body = { ...values, avatar: imageUrl }
             }
             const result = await addAccountMutation.mutateAsync(body)
-            toast({
-                description: result.payload.message
-            })
+            toast({ description: result.payload.message })
             reset()
             setOpen(false)
         } catch (error) {
-            handleErrorApi({
-                error,
-                setError: form.setError
-            })
+            handleErrorApi({ error, setError: form.setError })
         }
     }
 

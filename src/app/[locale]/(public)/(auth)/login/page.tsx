@@ -10,9 +10,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     return {
         title: t('title'),
         description: t('description'),
-        alternates: {
-            canonical: url
-        }
+        alternates: { canonical: url }
     }
 }
 

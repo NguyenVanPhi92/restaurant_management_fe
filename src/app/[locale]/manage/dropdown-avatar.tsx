@@ -32,9 +32,7 @@ export default function DropdownAvatar() {
             disconnectSocket()
             router.push('/')
         } catch (error: any) {
-            handleErrorApi({
-                error
-            })
+            handleErrorApi({ error })
         }
     }
 

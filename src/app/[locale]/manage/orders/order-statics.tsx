@@ -59,9 +59,7 @@ export default function OrderStatics({
             <Dialog
                 open={Boolean(selectedTableNumber)}
                 onOpenChange={(open) => {
-                    if (!open) {
-                        setSelectedTableNumber(0)
-                    }
+                    if (!open) setSelectedTableNumber(0)
                 }}
             >
                 <DialogContent className='max-h-full overflow-auto'>

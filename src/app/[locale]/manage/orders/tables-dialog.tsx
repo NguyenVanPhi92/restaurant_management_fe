@@ -96,10 +96,7 @@ export function TablesDialog({ onChoose }: { onChoose: (table: TableItem) => voi
     })
 
     useEffect(() => {
-        table.setPagination({
-            pageIndex: 0,
-            pageSize: PAGE_SIZE
-        })
+        table.setPagination({ pageIndex: 0, pageSize: PAGE_SIZE })
     }, [table])
 
     const choose = (table: TableItem) => {

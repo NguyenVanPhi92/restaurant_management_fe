@@ -25,9 +25,7 @@ export const useOrderService = (orderList: GetOrdersResType['data']) => {
             statics.status[order.status] = statics.status[order.status] + 1
             // Nếu table và guest chưa bị xóa
             if (order.tableNumber !== null && order.guestId !== null) {
-                if (!statics.table[order.tableNumber]) {
-                    statics.table[order.tableNumber] = {}
-                }
+                if (!statics.table[order.tableNumber]) statics.table[order.tableNumber] = {}
                 statics.table[order.tableNumber][order.guestId] = {
                     ...statics.table[order.tableNumber]?.[order.guestId],
                     [order.status]:
@@ -37,17 +35,14 @@ export const useOrderService = (orderList: GetOrdersResType['data']) => {
 
             // Tính toán cho orderObjectByGuestId
             if (order.guestId) {
-                if (!orderObjectByGuestId[order.guestId]) {
-                    orderObjectByGuestId[order.guestId] = []
-                }
+                if (!orderObjectByGuestId[order.guestId]) orderObjectByGuestId[order.guestId] = []
                 orderObjectByGuestId[order.guestId].push(order)
             }
 
             // Tính toán cho guestByTableNumber
             if (order.tableNumber && order.guestId) {
-                if (!guestByTableNumber[order.tableNumber]) {
+                if (!guestByTableNumber[order.tableNumber])
                     guestByTableNumber[order.tableNumber] = {}
-                }
                 guestByTableNumber[order.tableNumber][order.guestId] =
                     orderObjectByGuestId[order.guestId]
             }
@@ -66,19 +61,13 @@ export const useOrderService = (orderList: GetOrdersResType['data']) => {
                         order.status as any
                     )
                 )
-                if (isServingGuest) {
-                    servingGuestObject[Number(guestId)] = guestOrders
-                }
+                if (isServingGuest) servingGuestObject[Number(guestId)] = guestOrders
             }
             if (Object.keys(servingGuestObject).length) {
                 servingGuestByTableNumber[Number(tableNumber)] = servingGuestObject
             }
         }
-        return {
-            statics,
-            orderObjectByGuestId,
-            servingGuestByTableNumber
-        }
+        return { statics, orderObjectByGuestId, servingGuestByTableNumber }
     }, [orderList])
     return result
 }

@@ -3,10 +3,7 @@ import jwt from 'jsonwebtoken'
 import { cookies } from 'next/headers'
 
 export async function POST(request: Request) {
-    const body = (await request.json()) as {
-        accessToken: string
-        refreshToken: string
-    }
+    const body = (await request.json()) as { accessToken: string; refreshToken: string }
     const { accessToken, refreshToken } = body
     const cookieStore = cookies()
 
@@ -30,18 +27,9 @@ export async function POST(request: Request) {
         return Response.json(body)
     } catch (error) {
         if (error instanceof HttpError) {
-            return Response.json(error.payload, {
-                status: error.status
-            })
+            return Response.json(error.payload, { status: error.status })
         } else {
-            return Response.json(
-                {
-                    message: 'Có lỗi xảy ra'
-                },
-                {
-                    status: 500
-                }
-            )
+            return Response.json({ message: 'Có lỗi xảy ra' }, { status: 500 })
         }
     }
 }

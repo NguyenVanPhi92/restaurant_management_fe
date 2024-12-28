@@ -157,13 +157,9 @@ function AlertDialogDeleteDish({
             try {
                 const result = await mutateAsync(dishDelete.id)
                 setDishDelete(null)
-                toast({
-                    title: result.payload.message
-                })
+                toast({ title: result.payload.message })
             } catch (error) {
-                handleErrorApi({
-                    error
-                })
+                handleErrorApi({ error })
             }
         }
     }
@@ -171,9 +167,7 @@ function AlertDialogDeleteDish({
         <AlertDialog
             open={Boolean(dishDelete)}
             onOpenChange={(value) => {
-                if (!value) {
-                    setDishDelete(null)
-                }
+                if (!value) setDishDelete(null)
             }}
         >
             <AlertDialogContent>
@@ -237,10 +231,7 @@ export default function DishTable() {
     })
 
     useEffect(() => {
-        table.setPagination({
-            pageIndex,
-            pageSize: PAGE_SIZE
-        })
+        table.setPagination({ pageIndex, pageSize: PAGE_SIZE })
     }, [table, pageIndex])
 
     return (

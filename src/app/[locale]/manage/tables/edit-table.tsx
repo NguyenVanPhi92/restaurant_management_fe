@@ -39,14 +39,9 @@ export default function EditTable({
     onSubmitSuccess?: () => void
 }) {
     const updateTableMutation = useUpdateTableMutation()
-
     const form = useForm<UpdateTableBodyType>({
         resolver: zodResolver(UpdateTableBody),
-        defaultValues: {
-            capacity: 2,
-            status: TableStatus.Hidden,
-            changeToken: false
-        }
+        defaultValues: { capacity: 2, status: TableStatus.Hidden, changeToken: false }
     })
     const { data } = useGetTableQuery({ enabled: Boolean(id), id: id as number })
 
@@ -65,21 +60,13 @@ export default function EditTable({
     const onSubmit = async (values: UpdateTableBodyType) => {
         if (updateTableMutation.isPending) return
         try {
-            let body: UpdateTableBodyType & { id: number } = {
-                id: id as number,
-                ...values
-            }
+            let body: UpdateTableBodyType & { id: number } = { id: id as number, ...values }
             const result = await updateTableMutation.mutateAsync(body)
-            toast({
-                description: result.payload.message
-            })
+            toast({ description: result.payload.message })
             reset()
             onSubmitSuccess && onSubmitSuccess()
         } catch (error) {
-            handleErrorApi({
-                error,
-                setError: form.setError
-            })
+            handleErrorApi({ error, setError: form.setError })
         }
     }
 
@@ -89,9 +76,7 @@ export default function EditTable({
         <Dialog
             open={Boolean(id)}
             onOpenChange={(value) => {
-                if (!value) {
-                    reset()
-                }
+                if (!value) reset()
             }}
         >
             <DialogContent

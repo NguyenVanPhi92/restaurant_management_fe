@@ -45,10 +45,7 @@ export default function GuestLoginForm() {
             setSocket(generateSocketInstace(result.payload.data.accessToken))
             router.push('/guest/menu')
         } catch (error) {
-            handleErrorApi({
-                error,
-                setError: form.setError
-            })
+            handleErrorApi({ error, setError: form.setError })
         }
     }
 

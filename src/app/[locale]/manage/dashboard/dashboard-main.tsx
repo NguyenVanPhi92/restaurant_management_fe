@@ -15,10 +15,7 @@ const initToDate = endOfDay(new Date())
 export default function DashboardMain() {
     const [fromDate, setFromDate] = useState(initFromDate)
     const [toDate, setToDate] = useState(initToDate)
-    const { data } = useDashboardIndicator({
-        fromDate,
-        toDate
-    })
+    const { data } = useDashboardIndicator({ fromDate, toDate })
     const revenue = data?.payload.data.revenue ?? 0
     const guestCount = data?.payload.data.guestCount ?? 0
     const orderCount = data?.payload.data.orderCount ?? 0

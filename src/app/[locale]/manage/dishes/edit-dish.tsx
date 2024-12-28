@@ -60,9 +60,7 @@ export default function EditDish({
     const name = form.watch('name')
 
     const previewAvatarFromFile = useMemo(() => {
-        if (file) {
-            return URL.createObjectURL(file)
-        }
+        if (file) return URL.createObjectURL(file)
         return image
     }, [file, image])
 
@@ -83,32 +81,21 @@ export default function EditDish({
     const onSubmit = async (values: UpdateDishBodyType) => {
         if (updateDishMutation.isPending) return
         try {
-            let body: UpdateDishBodyType & { id: number } = {
-                id: id as number,
-                ...values
-            }
+            let body: UpdateDishBodyType & { id: number } = { id: id as number, ...values }
             if (file) {
                 const formData = new FormData()
                 formData.append('file', file)
                 const uploadImageResult = await uploadMediaMutation.mutateAsync(formData)
                 const imageUrl = uploadImageResult.payload.data
-                body = {
-                    ...body,
-                    image: imageUrl
-                }
+                body = { ...body, image: imageUrl }
             }
             const result = await updateDishMutation.mutateAsync(body)
             await revalidateApiRequest('dishes')
-            toast({
-                description: result.payload.message
-            })
+            toast({ description: result.payload.message })
             reset()
             onSubmitSuccess && onSubmitSuccess()
         } catch (error) {
-            handleErrorApi({
-                error,
-                setError: form.setError
-            })
+            handleErrorApi({ error, setError: form.setError })
         }
     }
 
@@ -121,9 +108,7 @@ export default function EditDish({
         <Dialog
             open={Boolean(id)}
             onOpenChange={(value) => {
-                if (!value) {
-                    reset()
-                }
+                if (!value) reset()
             }}
         >
             <DialogContent className='sm:max-w-[600px] max-h-screen overflow-auto'>

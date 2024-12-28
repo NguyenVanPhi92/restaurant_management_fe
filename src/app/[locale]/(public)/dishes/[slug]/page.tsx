@@ -30,10 +30,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
     }
     const url =
         envConfig.NEXT_PUBLIC_URL +
-        `/${params.locale}/dishes/${generateSlugUrl({
-            name: dish.name,
-            id: dish.id
-        })}`
+        `/${params.locale}/dishes/${generateSlugUrl({ name: dish.name, id: dish.id })}`
 
     return {
         title: dish.name,
@@ -43,28 +40,15 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
             title: dish.name,
             description: dish.description,
             url,
-            images: [
-                {
-                    url: dish.image
-                }
-            ]
+            images: [{ url: dish.image }]
         },
-        alternates: {
-            canonical: url
-        }
+        alternates: { canonical: url }
     }
 }
 
-export default async function DishPage({
-    params: { slug }
-}: {
-    params: {
-        slug: string
-    }
-}) {
+export default async function DishPage({ params: { slug } }: { params: { slug: string } }) {
     const id = getIdFromSlugUrl(slug)
     const data = await getDetail(id)
-
     const dish = data?.payload?.data
     return <DishDetail dish={dish} />
 }

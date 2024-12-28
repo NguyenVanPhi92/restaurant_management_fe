@@ -11,10 +11,7 @@ import { DashboardIndicatorResType } from '@/schemaValidations/indicator.schema'
 import { format, parse } from 'date-fns'
 import { CartesianGrid, Line, LineChart, XAxis } from 'recharts'
 const chartConfig = {
-    desktop: {
-        label: 'Desktop',
-        color: 'hsl(var(--chart-1))'
-    }
+    desktop: { label: 'Desktop', color: 'hsl(var(--chart-1))' }
 } satisfies ChartConfig
 
 export function RevenueLineChart({
@@ -30,14 +27,7 @@ export function RevenueLineChart({
             </CardHeader>
             <CardContent>
                 <ChartContainer config={chartConfig}>
-                    <LineChart
-                        accessibilityLayer
-                        data={chartData}
-                        margin={{
-                            left: 12,
-                            right: 12
-                        }}
-                    >
+                    <LineChart accessibilityLayer data={chartData} margin={{ left: 12, right: 12 }}>
                         <CartesianGrid vertical={false} />
                         <XAxis
                             dataKey='date'
@@ -45,9 +35,7 @@ export function RevenueLineChart({
                             axisLine={false}
                             tickMargin={8}
                             tickFormatter={(value) => {
-                                if (chartData.length < 8) {
-                                    return value
-                                }
+                                if (chartData.length < 8) return value
                                 if (chartData.length < 33) {
                                     const date = parse(value, 'dd/MM/yyyy', new Date())
                                     return format(date, 'dd')

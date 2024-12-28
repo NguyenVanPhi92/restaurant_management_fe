@@ -47,10 +47,7 @@ export default function EditOrder({
 }) {
     const [selectedDish, setSelectedDish] = useState<DishListResType['data'][0] | null>(null)
     const updateOrderMutation = useUpdateOrderMutation()
-    const { data } = useGetOrderDetailQuery({
-        id: id as number,
-        enabled: Boolean(id)
-    })
+    const { data } = useGetOrderDetailQuery({ id: id as number, enabled: Boolean(id) })
 
     const form = useForm<UpdateOrderBodyType>({
         resolver: zodResolver(UpdateOrderBody),
@@ -86,16 +83,11 @@ export default function EditOrder({
                 ...values
             }
             const result = await updateOrderMutation.mutateAsync(body)
-            toast({
-                description: result.payload.message
-            })
+            toast({ description: result.payload.message })
             reset()
             onSubmitSuccess && onSubmitSuccess()
         } catch (error) {
-            handleErrorApi({
-                error,
-                setError: form.setError
-            })
+            handleErrorApi({ error, setError: form.setError })
         }
     }
     const reset = () => setId(undefined)
@@ -104,9 +96,7 @@ export default function EditOrder({
         <Dialog
             open={Boolean(id)}
             onOpenChange={(value) => {
-                if (!value) {
-                    reset()
-                }
+                if (!value) reset()
             }}
         >
             <DialogContent className='sm:max-w-[600px] max-h-screen overflow-auto'>
@@ -165,9 +155,7 @@ export default function EditOrder({
                                                     onChange={(e) => {
                                                         let value = e.target.value
                                                         const numberValue = Number(value)
-                                                        if (isNaN(numberValue)) {
-                                                            return
-                                                        }
+                                                        if (isNaN(numberValue)) return
                                                         field.onChange(numberValue)
                                                     }}
                                                 />

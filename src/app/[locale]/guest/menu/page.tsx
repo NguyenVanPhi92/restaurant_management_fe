@@ -26,12 +26,8 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
             description: t('description'),
             url
         },
-        alternates: {
-            canonical: url
-        },
-        robots: {
-            index: false
-        }
+        alternates: { canonical: url },
+        robots: { index: false }
     }
 }
 

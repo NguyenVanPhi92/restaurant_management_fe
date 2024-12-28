@@ -49,17 +49,12 @@ export default function LoginForm() {
 
     const form = useForm<LoginBodyType>({
         resolver: zodResolver(LoginBody),
-        defaultValues: {
-            email: '',
-            password: ''
-        }
+        defaultValues: { email: '', password: '' }
     })
     const router = useRouter()
 
     useEffect(() => {
-        if (clearTokens) {
-            setRole()
-        }
+        if (clearTokens) setRole()
     }, [clearTokens, setRole])
 
     // handle event
@@ -69,17 +64,12 @@ export default function LoginForm() {
         if (loginMutation.isPending) return
         try {
             const result = await loginMutation.mutateAsync(data)
-            toast({
-                description: result.payload.message
-            })
+            toast({ description: result.payload.message })
             setRole(result.payload.data.account.role)
             router.push('/manage/dashboard')
             setSocket(generateSocketInstace(result.payload.data.accessToken))
         } catch (error: any) {
-            handleErrorApi({
-                error,
-                setError: form.setError
-            })
+            handleErrorApi({ error, setError: form.setError })
         }
     }
 
@@ -151,6 +141,7 @@ export default function LoginForm() {
                                 )}
                                 {t('buttonLogin')}
                             </Button>
+
                             <Link href={googleOauthUrl}>
                                 <Button variant='outline' className='w-full' type='button'>
                                     {t('loginWithGoogle')}
