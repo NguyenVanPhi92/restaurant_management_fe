@@ -1,4 +1,5 @@
 import { z } from 'zod'
+// File này chủ yếu để khai báo các biến môi trường và kiểm tra xem các biến môi trường đó có hợp lệ hay không
 
 // khai báo validate biến môi trường env
 const configSchema = z.object({
@@ -23,8 +24,8 @@ if (!configProject.success) {
     throw new Error('Các khai báo biến môi trường không hợp lệ')
 }
 
+// export biến môi trường
 const envConfig = configProject.data
-
 export default envConfig
 export type Locale = (typeof locales)[number]
 
