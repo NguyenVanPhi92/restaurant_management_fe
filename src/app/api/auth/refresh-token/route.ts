@@ -10,6 +10,9 @@ export async function POST(request: Request) {
         return Response.json({ message: 'Không tìm thấy refreshToken' }, { status: 401 })
     }
     try {
+        // const { payload } = (await authApiRequest.sRefreshToken({ refreshToken })) as unknown as {
+        //     payload?: any
+        // }
         const { payload } = await authApiRequest.sRefreshToken({ refreshToken })
         const decodedAccessToken = jwt.decode(payload.data.accessToken) as { exp: number }
         const decodedRefreshToken = jwt.decode(payload.data.refreshToken) as { exp: number }

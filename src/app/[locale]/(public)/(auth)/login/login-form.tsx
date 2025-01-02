@@ -12,6 +12,7 @@ import { generateSocketInstace, handleErrorApi } from '@/lib/utils'
 import { Link, useRouter } from '@/navigation'
 import { useLoginMutation } from '@/queries/useAuth'
 import { LoginBody, LoginBodyType } from '@/schemaValidations/auth.schema'
+import { RoleType } from '@/types/jwt.types'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { LoaderCircle } from 'lucide-react'
 import { useTranslations } from 'next-intl'
@@ -72,6 +73,22 @@ export default function LoginForm() {
             handleErrorApi({ error, setError: form.setError })
         }
     }
+
+    //    // handle event
+    //    const onSubmit1 = async (data: LoginBodyType) => {
+    //     // Khi nhấn submit thì React hook form sẽ validate cái form bằng zod schema ở client trước
+    //     // Nếu không pass qua vòng này thì sẽ không gọi api
+    //     if (loginMutation.isPending) return
+    //     try {
+    //         const result = await loginMutation.mutateAsync(data) as { payload: { message: string, data: { account: { role: string }, accessToken: string } } }
+    //         toast({ description: result.payload.message })
+    //         setRole(result.payload.data.account.role as RoleType)
+    //         router.push('/manage/dashboard')
+    //         setSocket(generateSocketInstace(result.payload.data.accessToken))
+    //     } catch (error: any) {
+    //         handleErrorApi({ error, setError: form.setError })
+    //     }
+    // }
 
     return (
         <Card className='mx-auto max-w-sm'>

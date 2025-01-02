@@ -20,4 +20,16 @@ export async function POST(request: Request) {
     } catch (error) {
         return Response.json({ message: 'Lỗi khi gọi API đến server backend' }, { status: 200 })
     }
+
+    // try {
+    //     await authApiRequest.sLogout({ accessToken, refreshToken });
+    //     const result = {}; // Assuming the result is an empty object if no value is returned
+    //     if (typeof result === 'object' && (result as any).payload) {
+    //         return Response.json((result as any).payload)
+    //     } else {
+    //         return Response.json({ message: 'No payload returned from API' }, { status: 200 })
+    //     }
+    // } catch (error) {
+    //     return Response.json({ message: 'Lỗi khi gọi API đến server backend' }, { status: 200 })
+    // }
 }

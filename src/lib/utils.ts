@@ -34,10 +34,7 @@ export const handleErrorApi = ({
 }) => {
     if (error instanceof EntityError && setError) {
         error.payload.errors.forEach((item) => {
-            setError(item.field, {
-                type: 'server',
-                message: item.message
-            })
+            setError(item.field, { type: 'server', message: item.message })
         })
     } else {
         toast({
@@ -49,7 +46,8 @@ export const handleErrorApi = ({
     }
 }
 
-const isBrowser = typeof window !== 'undefined' //Check current code running on server or client
+//Check current code running on server or client
+const isBrowser = typeof window !== 'undefined'
 
 export const getAccessTokenFromLocalStorage = () =>
     isBrowser ? localStorage.getItem('accessToken') : null

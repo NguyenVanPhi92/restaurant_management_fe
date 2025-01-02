@@ -3,9 +3,7 @@
 import { type ReadonlyURLSearchParams, useSearchParams } from 'next/navigation'
 import React, { Suspense, useEffect, useState } from 'react'
 
-type SearchParamsLoaderProps = {
-    onParamsReceived: (params: ReadonlyURLSearchParams) => void
-}
+type SearchParamsLoaderProps = { onParamsReceived: (params: ReadonlyURLSearchParams) => void }
 
 function Suspender(props: SearchParamsLoaderProps) {
     return (
@@ -17,11 +15,9 @@ function Suspender(props: SearchParamsLoaderProps) {
 
 function Suspendend({ onParamsReceived }: SearchParamsLoaderProps) {
     const searchParams = useSearchParams()
-
     useEffect(() => {
         onParamsReceived(searchParams)
     })
-
     return null
 }
 

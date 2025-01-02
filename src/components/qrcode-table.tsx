@@ -33,14 +33,8 @@ export default function QRCodeTable({
 
         QRCode.toCanvas(
             virtalCanvas,
-            getTableLink({
-                token,
-                tableNumber
-            }),
-            {
-                width,
-                margin: 4
-            },
+            getTableLink({ token, tableNumber }),
+            { width, margin: 4 },
             function (error) {
                 if (error) console.error(error)
                 canvasContext.drawImage(virtalCanvas, 0, 0, width, width)

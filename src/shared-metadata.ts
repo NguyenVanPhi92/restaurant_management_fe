@@ -5,9 +5,5 @@ export const baseOpenGraph = {
     alternateLocale: ['vi_VN'],
     type: 'website',
     siteName: 'Bigboy Restaurant',
-    images: [
-        {
-            url: `${envConfig.NEXT_PUBLIC_URL}/banner.png`
-        }
-    ]
+    images: [{ url: `${envConfig.NEXT_PUBLIC_URL}/banner.png` }]
 }

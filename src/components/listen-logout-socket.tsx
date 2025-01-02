@@ -24,9 +24,7 @@ export default function ListenLogoutSocket() {
                 disconnectSocket()
                 router.push('/')
             } catch (error: any) {
-                handleErrorApi({
-                    error
-                })
+                handleErrorApi({ error })
             }
         }
         socket?.on('logout', onLogout)

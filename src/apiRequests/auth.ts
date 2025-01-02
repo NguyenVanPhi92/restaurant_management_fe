@@ -16,35 +16,22 @@ const authApiRequest = {
     // server login LoginResType: dinh nghia kieu tra ve
     sLogin: (body: LoginBodyType) => http.post<LoginResType>('/auth/login', body),
     // client login
-    login: (body: LoginBodyType) =>
-        http.post<LoginResType>('/api/auth/login', body, {
-            baseUrl: ''
-        }),
-
-    sLogout: (
-        body: LogoutBodyType & {
-            accessToken: string
-        }
-    ) =>
+    login: (body: LoginBodyType) => {
+        http.post<LoginResType>('/api/auth/login', body, { baseUrl: '' })
+    },
+    sLogout: (body: LogoutBodyType & { accessToken: string }) => {
         http.post(
             '/auth/logout',
-            {
-                refreshToken: body.refreshToken
-            },
-            {
-                headers: {
-                    Authorization: `Bearer ${body.accessToken}`
-                }
-            }
-        ),
+            { refreshToken: body.refreshToken },
+            { headers: { Authorization: `Bearer ${body.accessToken}` } }
+        )
+    },
     logout: () => http.post('/api/auth/logout', null, { baseUrl: '' }), // client gọi đến route handler, không cần truyền AT và RT vào body vì AT và RT tự  động gửi thông qua cookie rồi
-
-    sRefreshToken: (body: RefreshTokenBodyType) =>
-        http.post<RefreshTokenResType>('/auth/refresh-token', body),
+    sRefreshToken: (body: RefreshTokenBodyType) => {
+        http.post<RefreshTokenResType>('/auth/refresh-token', body)
+    },
     async refreshToken() {
-        if (this.refreshTokenRequest) {
-            return this.refreshTokenRequest
-        }
+        if (this.refreshTokenRequest) return this.refreshTokenRequest
         this.refreshTokenRequest = http.post<RefreshTokenResType>('/api/auth/refresh-token', null, {
             baseUrl: ''
         })
@@ -52,9 +39,9 @@ const authApiRequest = {
         this.refreshTokenRequest = null
         return result
     },
-
-    setTokenToCookie: (body: { accessToken: string; refreshToken: string }) =>
+    setTokenToCookie: (body: { accessToken: string; refreshToken: string }) => {
         http.post('/api/auth/token', body, { baseUrl: '' })
+    }
 }
 
 export default authApiRequest

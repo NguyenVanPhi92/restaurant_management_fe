@@ -18,10 +18,7 @@ const loginPaths = ['/vi/login', '/en/login']
 
 // This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
-    const handleI18nRouting = createMiddleware({
-        locales,
-        defaultLocale
-    })
+    const handleI18nRouting = createMiddleware({ locales, defaultLocale })
     const response = handleI18nRouting(request)
     const { pathname, searchParams } = request.nextUrl
     // pathname: /manage/dashboard
@@ -93,6 +90,4 @@ export function middleware(request: NextRequest) {
 }
 
 // See "Matching Paths" below to learn more
-export const config = {
-    matcher: ['/', '/(vi|en)/:path*']
-}
+export const config = { matcher: ['/', '/(vi|en)/:path*'] }

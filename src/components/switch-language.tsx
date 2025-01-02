@@ -22,9 +22,7 @@ export default function SwitchLanguage() {
         <Select
             value={locale}
             onValueChange={(value) => {
-                router.replace(pathname, {
-                    locale: value as Locale
-                })
+                router.replace(pathname, { locale: value as Locale })
                 router.refresh()
             }}
         >

@@ -1,7 +1,7 @@
 import { Role, TokenType } from '@/constants/type'
-
-export type TokenTypeValue = (typeof TokenType)[keyof typeof TokenType]
-export type RoleType = (typeof Role)[keyof typeof Role]
+// tạo 'union type' lấy ra các keys của đối tượng TokenType,RoleType
+export type TokenTypeValue = (typeof TokenType)[keyof typeof TokenType] // Ex: type TokenTypeValue = "ForgotPasswordToken" | "AccessToken" | "RefreshToken" | "TableToken"
+export type RoleType = (typeof Role)[keyof typeof Role] // Ex: type RoleType = "Owner" | "Employee" | "Guest"
 export interface TokenPayload {
     userId: number
     role: RoleType
