@@ -5,7 +5,6 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 export const useDishListQuery = () => {
     return useQuery({ queryKey: ['dishes'], queryFn: dishApiRequest.list })
 }
-
 export const useGetDishQuery = ({ id, enabled }: { id: number; enabled: boolean }) => {
     return useQuery({
         queryKey: ['dishes', id],
@@ -13,7 +12,6 @@ export const useGetDishQuery = ({ id, enabled }: { id: number; enabled: boolean 
         enabled
     })
 }
-
 export const useAddDishMutation = () => {
     const queryClient = useQueryClient()
     return useMutation({
@@ -21,7 +19,6 @@ export const useAddDishMutation = () => {
         onSuccess: () => queryClient.invalidateQueries({ queryKey: ['dishes'] })
     })
 }
-
 export const useUpdateDishMutation = () => {
     const queryClient = useQueryClient()
     return useMutation({
@@ -30,7 +27,6 @@ export const useUpdateDishMutation = () => {
         onSuccess: () => queryClient.invalidateQueries({ queryKey: ['dishes'], exact: true })
     })
 }
-
 export const useDeleteDishMutation = () => {
     const queryClient = useQueryClient()
     return useMutation({
