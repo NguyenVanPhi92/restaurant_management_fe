@@ -5,9 +5,7 @@ import jwt from 'jsonwebtoken'
 import { TokenPayload } from '@/types/jwt.types'
 import createMiddleware from 'next-intl/middleware'
 import { locales, defaultLocale } from '@/config'
-const decodeToken = (token: string) => {
-    return jwt.decode(token) as TokenPayload
-}
+const decodeToken = (token: string) => jwt.decode(token) as TokenPayload
 
 const managePaths = ['/vi/manage', '/en/manage']
 const guestPaths = ['/vi/guest', '/en/guest']

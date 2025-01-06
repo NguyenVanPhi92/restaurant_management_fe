@@ -3,11 +3,7 @@ import { OrderSchema } from '@/schemaValidations/order.schema'
 import z from 'zod'
 
 export const GuestLoginBody = z
-    .object({
-        name: z.string().min(2).max(50),
-        tableNumber: z.number(),
-        token: z.string()
-    })
+    .object({ name: z.string().min(2).max(50), tableNumber: z.number(), token: z.string() })
     .strict()
 export type GuestLoginBodyType = z.TypeOf<typeof GuestLoginBody>
 
@@ -36,10 +32,7 @@ export const GuestCreateOrdersBody = z.array(
 )
 export type GuestCreateOrdersBodyType = z.TypeOf<typeof GuestCreateOrdersBody>
 
-export const GuestCreateOrdersRes = z.object({
-    message: z.string(),
-    data: z.array(OrderSchema)
-})
+export const GuestCreateOrdersRes = z.object({ message: z.string(), data: z.array(OrderSchema) })
 export type GuestCreateOrdersResType = z.TypeOf<typeof GuestCreateOrdersRes>
 
 export const GuestGetOrdersRes = GuestCreateOrdersRes

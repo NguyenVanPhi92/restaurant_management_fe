@@ -1,6 +1,6 @@
 # Phân tích dự án
 
-đây là khâu quan trọng nhất, nó giúp chúng ta hiểu rỏ vấn đề cần giải quyết. Phân tích sai thì code đập đi xây lại tốn thời gian
+Đây là khâu quan trọng nhất, nó giúp chúng ta hiểu rỏ vấn đề cần giải quyết. Phân tích sai thì code đập đi xây lại tốn thời gian
 
 Size Công Ty Lớn
 

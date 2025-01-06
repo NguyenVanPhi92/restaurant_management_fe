@@ -39,7 +39,5 @@ export const usePayForGuestMutation = () => {
 }
 
 export const useCreateOrderMutation = () => {
-    return useMutation({
-        mutationFn: orderApiRequest.createOrders
-    })
+    return useMutation({ mutationFn: orderApiRequest.createOrders })
 }

@@ -1,4 +1,4 @@
-//as const is used to make the values readonly
+// as const: is used to make the values readonly
 export const TokenType = {
     ForgotPasswordToken: 'ForgotPasswordToken',
     AccessToken: 'AccessToken',

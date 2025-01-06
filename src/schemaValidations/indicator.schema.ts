@@ -13,17 +13,8 @@ export const DashboardIndicatorRes = z.object({
         guestCount: z.number(),
         orderCount: z.number(),
         servingTableCount: z.number(),
-        dishIndicator: z.array(
-            DishSchema.extend({
-                successOrders: z.number()
-            })
-        ),
-        revenueByDate: z.array(
-            z.object({
-                date: z.string(),
-                revenue: z.number()
-            })
-        )
+        dishIndicator: z.array(DishSchema.extend({ successOrders: z.number() })),
+        revenueByDate: z.array(z.object({ date: z.string(), revenue: z.number() }))
     }),
     message: z.string()
 })

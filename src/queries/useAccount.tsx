@@ -19,9 +19,7 @@ export const useUpdateMeMutation = () => {
 }
 
 export const useChangePasswordMutation = () => {
-    return useMutation({
-        mutationFn: accountApiRequest.changePassword
-    })
+    return useMutation({ mutationFn: accountApiRequest.changePassword })
 }
 
 export const useGetAccountList = () => {
@@ -43,11 +41,7 @@ export const useAddAccountMutation = () => {
     const queryClient = useQueryClient()
     return useMutation({
         mutationFn: accountApiRequest.addEmployee,
-        onSuccess: () => {
-            queryClient.invalidateQueries({
-                queryKey: ['accounts']
-            })
-        }
+        onSuccess: () => queryClient.invalidateQueries({ queryKey: ['accounts'] })
     })
 }
 

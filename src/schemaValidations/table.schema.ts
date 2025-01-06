@@ -17,16 +17,10 @@ export const TableSchema = z.object({
     updatedAt: z.date()
 })
 
-export const TableRes = z.object({
-    data: TableSchema,
-    message: z.string()
-})
+export const TableRes = z.object({ data: TableSchema, message: z.string() })
 export type TableResType = z.TypeOf<typeof TableRes>
 
-export const TableListRes = z.object({
-    data: z.array(TableSchema),
-    message: z.string()
-})
+export const TableListRes = z.object({ data: z.array(TableSchema), message: z.string() })
 export type TableListResType = z.TypeOf<typeof TableListRes>
 
 export const UpdateTableBody = z.object({

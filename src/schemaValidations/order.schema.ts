@@ -48,10 +48,7 @@ export type UpdateOrderBodyType = z.TypeOf<typeof UpdateOrderBody>
 export const OrderParam = z.object({ orderId: z.coerce.number() })
 export type OrderParamType = z.TypeOf<typeof OrderParam>
 
-export const UpdateOrderRes = z.object({
-    message: z.string(),
-    data: OrderSchema
-})
+export const UpdateOrderRes = z.object({ message: z.string(), data: OrderSchema })
 export type UpdateOrderResType = z.TypeOf<typeof UpdateOrderRes>
 
 export const GetOrdersQueryParams = z.object({
@@ -60,17 +57,12 @@ export const GetOrdersQueryParams = z.object({
 })
 export type GetOrdersQueryParamsType = z.TypeOf<typeof GetOrdersQueryParams>
 
-export const GetOrdersRes = z.object({
-    message: z.string(),
-    data: z.array(OrderSchema)
-})
+export const GetOrdersRes = z.object({ message: z.string(), data: z.array(OrderSchema) })
 export type GetOrdersResType = z.TypeOf<typeof GetOrdersRes>
 
 export const GetOrderDetailRes = z.object({
     message: z.string(),
-    data: OrderSchema.extend({
-        table: TableSchema
-    })
+    data: OrderSchema.extend({ table: TableSchema })
 })
 export type GetOrderDetailResType = z.TypeOf<typeof GetOrderDetailRes>
 
@@ -93,8 +85,5 @@ export const CreateOrdersBody = z
     .strict()
 export type CreateOrdersBodyType = z.TypeOf<typeof CreateOrdersBody>
 
-export const CreateOrdersRes = z.object({
-    message: z.string(),
-    data: z.array(OrderSchema)
-})
+export const CreateOrdersRes = z.object({ message: z.string(), data: z.array(OrderSchema) })
 export type CreateOrdersResType = z.TypeOf<typeof CreateOrdersRes>

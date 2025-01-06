@@ -10,18 +10,10 @@ export const AccountSchema = z.object({
 })
 export type AccountType = z.TypeOf<typeof AccountSchema>
 
-export const AccountListRes = z.object({
-    data: z.array(AccountSchema),
-    message: z.string()
-})
+export const AccountListRes = z.object({ data: z.array(AccountSchema), message: z.string() })
 export type AccountListResType = z.TypeOf<typeof AccountListRes>
 
-export const AccountRes = z
-    .object({
-        data: AccountSchema,
-        message: z.string()
-    })
-    .strict()
+export const AccountRes = z.object({ data: AccountSchema, message: z.string() }).strict()
 export type AccountResType = z.TypeOf<typeof AccountRes>
 
 export const CreateEmployeeAccountBody = z
@@ -75,10 +67,7 @@ export const UpdateEmployeeAccountBody = z
 export type UpdateEmployeeAccountBodyType = z.TypeOf<typeof UpdateEmployeeAccountBody>
 
 export const UpdateMeBody = z
-    .object({
-        name: z.string().trim().min(2).max(256),
-        avatar: z.string().url().optional()
-    })
+    .object({ name: z.string().trim().min(2).max(256), avatar: z.string().url().optional() })
     .strict()
 export type UpdateMeBodyType = z.TypeOf<typeof UpdateMeBody>
 
@@ -100,9 +89,7 @@ export const ChangePasswordBody = z
     })
 export type ChangePasswordBodyType = z.TypeOf<typeof ChangePasswordBody>
 
-export const AccountIdParam = z.object({
-    id: z.coerce.number()
-})
+export const AccountIdParam = z.object({ id: z.coerce.number() })
 export type AccountIdParamType = z.TypeOf<typeof AccountIdParam>
 
 export const GetListGuestsRes = z.object({
@@ -126,10 +113,7 @@ export const GetGuestListQueryParams = z.object({
 export type GetGuestListQueryParamsType = z.TypeOf<typeof GetGuestListQueryParams>
 
 export const CreateGuestBody = z
-    .object({
-        name: z.string().trim().min(2).max(256),
-        tableNumber: z.number()
-    })
+    .object({ name: z.string().trim().min(2).max(256), tableNumber: z.number() })
     .strict()
 export type CreateGuestBodyType = z.TypeOf<typeof CreateGuestBody>
 

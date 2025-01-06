@@ -22,8 +22,9 @@ const orderApiRequest = {
                     toDate: queryParams.toDate?.toISOString()
                 })
         ),
-    updateOrder: (orderId: number, body: UpdateOrderBodyType) =>
-        http.put<UpdateOrderResType>(`/orders/${orderId}`, body),
+    updateOrder: (orderId: number, body: UpdateOrderBodyType) => {
+        http.put<UpdateOrderResType>(`/orders/${orderId}`, body)
+    },
     getOrderDetail: (orderId: number) => http.get<GetOrderDetailResType>(`/orders/${orderId}`),
     pay: (body: PayGuestOrdersBodyType) => http.post<PayGuestOrdersResType>(`/orders/pay`, body)
 }
