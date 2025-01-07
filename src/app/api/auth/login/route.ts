@@ -34,10 +34,8 @@ export async function POST(request: Request) {
         // trả vê data cho server
         return Response.json(payload)
     } catch (error) {
-        if (error instanceof HttpError) {
-            return Response.json(error.payload, { status: error.status })
-        } else {
-            return Response.json({ message: 'Có lỗi xảy ra' }, { status: 500 })
-        }
+        error instanceof HttpError
+            ? Response.json(error.payload, { status: error.status })
+            : Response.json({ message: 'Có lỗi xảy ra' }, { status: 500 })
     }
 }

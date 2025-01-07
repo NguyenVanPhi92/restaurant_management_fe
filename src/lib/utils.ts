@@ -111,14 +111,12 @@ export const checkAndRefreshToken = async (param?: {
         }
     }
 }
-
 export const formatCurrency = (number: number) => {
     return new Intl.NumberFormat('vi-VN', {
         style: 'currency',
         currency: 'VND'
     }).format(number)
 }
-
 export const getVietnameseDishStatus = (status: (typeof DishStatus)[keyof typeof DishStatus]) => {
     switch (status) {
         case DishStatus.Available:
@@ -129,7 +127,6 @@ export const getVietnameseDishStatus = (status: (typeof DishStatus)[keyof typeof
             return 'Ẩn'
     }
 }
-
 export const getVietnameseOrderStatus = (
     status: (typeof OrderStatus)[keyof typeof OrderStatus]
 ) => {
@@ -146,7 +143,6 @@ export const getVietnameseOrderStatus = (
             return 'Từ chối'
     }
 }
-
 export const getVietnameseTableStatus = (
     status: (typeof TableStatus)[keyof typeof TableStatus]
 ) => {
@@ -159,15 +155,10 @@ export const getVietnameseTableStatus = (
             return 'Ẩn'
     }
 }
-
 export const getTableLink = ({ token, tableNumber }: { token: string; tableNumber: number }) => {
     return envConfig.NEXT_PUBLIC_URL + `/${defaultLocale}/tables/` + tableNumber + '?token=' + token
 }
-
-export const decodeToken = (token: string) => {
-    return jwtDecode(token) as TokenPayload
-}
-
+export const decodeToken = (token: string) => jwtDecode(token) as TokenPayload
 export function removeAccents(str: string) {
     return str
         .normalize('NFD')
@@ -175,29 +166,22 @@ export function removeAccents(str: string) {
         .replace(/đ/g, 'd')
         .replace(/Đ/g, 'D')
 }
-
 export const simpleMatchText = (fullText: string, matchText: string) => {
     return removeAccents(fullText.toLowerCase()).includes(
         removeAccents(matchText.trim().toLowerCase())
     )
 }
-
 export const formatDateTimeToLocaleString = (date: string | Date) => {
     return format(date instanceof Date ? date : new Date(date), 'HH:mm:ss dd/MM/yyyy')
 }
-
 export const formatDateTimeToTimeString = (date: string | Date) => {
     return format(date instanceof Date ? date : new Date(date), 'HH:mm:ss')
 }
-
 export const generateSocketInstace = (accessToken: string) => {
     return io(envConfig.NEXT_PUBLIC_API_ENDPOINT, {
-        auth: {
-            Authorization: `Bearer ${accessToken}`
-        }
+        auth: { Authorization: `Bearer ${accessToken}` }
     })
 }
-
 export const OrderStatusIcon = {
     [OrderStatus.Pending]: Loader,
     [OrderStatus.Processing]: CookingPot,
@@ -205,23 +189,16 @@ export const OrderStatusIcon = {
     [OrderStatus.Delivered]: Truck,
     [OrderStatus.Paid]: HandCoins
 }
-
 export const wrapServerApi = async <T>(fn: () => Promise<T>) => {
     let result = null
     try {
         result = await fn()
     } catch (error: any) {
-        if (error.digest?.includes('NEXT_REDIRECT')) {
-            throw error
-        }
+        if (error.digest?.includes('NEXT_REDIRECT')) throw error
     }
     return result
 }
-
 export const generateSlugUrl = ({ name, id }: { name: string; id: number }) => {
     return `${slugify(name)}-i.${id}`
 }
-
-export const getIdFromSlugUrl = (slug: string) => {
-    return Number(slug.split('-i.')[1])
-}
+export const getIdFromSlugUrl = (slug: string) => Number(slug.split('-i.')[1])
