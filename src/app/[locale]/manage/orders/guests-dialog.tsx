@@ -84,11 +84,9 @@ export default function GuestsDialog({ onChoose }: { onChoose: (guest: GuestItem
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
     const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
     const [rowSelection, setRowSelection] = useState({})
-    const [pagination, setPagination] = useState({
-        pageIndex: 0, // Gía trị mặc định ban đầu, không có ý nghĩa khi data được fetch bất đồng bộ
-        pageSize: PAGE_SIZE //default page size
-    })
-
+    // pageIndex: Gía trị mặc định ban đầu, không có ý nghĩa khi data được fetch bất đồng bộ
+    // 'pageSize: PAGE_SIZE': default page size
+    const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: PAGE_SIZE })
     const table = useReactTable({
         data,
         columns,
@@ -102,28 +100,16 @@ export default function GuestsDialog({ onChoose }: { onChoose: (guest: GuestItem
         onRowSelectionChange: setRowSelection,
         onPaginationChange: setPagination,
         autoResetPageIndex: false,
-        state: {
-            sorting,
-            columnFilters,
-            columnVisibility,
-            rowSelection,
-            pagination
-        }
+        state: { sorting, columnFilters, columnVisibility, rowSelection, pagination }
     })
-
     useEffect(() => {
-        table.setPagination({
-            pageIndex: 0,
-            pageSize: PAGE_SIZE
-        })
+        table.setPagination({ pageIndex: 0, pageSize: PAGE_SIZE })
     }, [table])
-
     // handle event
     const choose = (guest: GuestItem) => {
         onChoose(guest)
         setOpen(false)
     }
-
     const resetDateFilter = () => {
         setFromDate(initFromDate)
         setToDate(initToDate)
@@ -213,9 +199,7 @@ export default function GuestsDialog({ onChoose }: { onChoose: (guest: GuestItem
                                             <TableRow
                                                 key={row.id}
                                                 data-state={row.getIsSelected() && 'selected'}
-                                                onClick={() => {
-                                                    choose(row.original)
-                                                }}
+                                                onClick={() => choose(row.original)}
                                                 className='cursor-pointer'
                                             >
                                                 {row.getVisibleCells().map((cell) => (

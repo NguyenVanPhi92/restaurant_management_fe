@@ -1,5 +1,4 @@
 'use client'
-
 import AddDish from '@/app/[locale]/manage/dishes/add-dish'
 import EditDish from '@/app/[locale]/manage/dishes/edit-dish'
 import AutoPagination from '@/components/auto-pagination'
@@ -69,10 +68,7 @@ const DishTableContext = createContext<{
 })
 
 export const columns: ColumnDef<DishItem>[] = [
-    {
-        accessorKey: 'id',
-        header: 'ID'
-    },
+    { accessorKey: 'id', header: 'ID' },
     {
         accessorKey: 'image',
         header: 'Ảnh',
@@ -117,13 +113,8 @@ export const columns: ColumnDef<DishItem>[] = [
         enableHiding: false,
         cell: function Actions({ row }) {
             const { setDishIdEdit, setDishDelete } = useContext(DishTableContext)
-            const openEditDish = () => {
-                setDishIdEdit(row.original.id)
-            }
-
-            const openDeleteDish = () => {
-                setDishDelete(row.original)
-            }
+            const openEditDish = () => setDishIdEdit(row.original.id)
+            const openDeleteDish = () => setDishDelete(row.original)
             return (
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>

@@ -15,10 +15,7 @@ type Props = {
 }
 
 export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
-    const t = await getTranslations({
-        locale: params.locale,
-        namespace: 'DishDetail'
-    })
+    const t = await getTranslations({ locale: params.locale, namespace: 'DishDetail' })
     const id = getIdFromSlugUrl(params.slug)
     const data = await getDetail(id)
     const dish = data?.payload.data

@@ -10,7 +10,6 @@ import Image from 'next/image'
 export async function generateMetadata({ params: { locale } }: { params: { locale: Locale } }) {
     const t = await getTranslations({ locale, namespace: 'HomePage' })
     const url = envConfig.NEXT_PUBLIC_URL + `/${locale}`
-
     return {
         title: t('title'),
         description: htmlToTextForDescription(t('description')),
@@ -22,7 +21,6 @@ export default async function Home({ params: { locale } }: { params: { locale: s
     unstable_setRequestLocale(locale)
     const t = await getTranslations('HomePage')
     let dishList: DishListResType['data'] = []
-
     try {
         const result = await dishApiRequest.list()
         const {

@@ -10,9 +10,7 @@ type Props = {
 
 export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
     const t = await getTranslations({ locale: params.locale, namespace: 'Dashboard' })
-
     const url = envConfig.NEXT_PUBLIC_URL + `/${params.locale}/manage/dashboard`
-
     return {
         title: t('title'),
         description: t('description'),

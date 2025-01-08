@@ -26,31 +26,13 @@ const colors = [
     'var(--color-edge)',
     'var(--color-other)'
 ]
-
 const chartConfig = {
-    visitors: {
-        label: 'Visitors'
-    },
-    chrome: {
-        label: 'Chrome',
-        color: 'hsl(var(--chart-1))'
-    },
-    safari: {
-        label: 'Safari',
-        color: 'hsl(var(--chart-2))'
-    },
-    firefox: {
-        label: 'Firefox',
-        color: 'hsl(var(--chart-3))'
-    },
-    edge: {
-        label: 'Edge',
-        color: 'hsl(var(--chart-4))'
-    },
-    other: {
-        label: 'Other',
-        color: 'hsl(var(--chart-5))'
-    }
+    visitors: { label: 'Visitors' },
+    chrome: { label: 'Chrome', color: 'hsl(var(--chart-1))' },
+    safari: { label: 'Safari', color: 'hsl(var(--chart-2))' },
+    firefox: { label: 'Firefox', color: 'hsl(var(--chart-3))' },
+    edge: { label: 'Edge', color: 'hsl(var(--chart-4))' },
+    other: { label: 'Other', color: 'hsl(var(--chart-5))' }
 } satisfies ChartConfig
 
 export function DishBarChart({
@@ -64,10 +46,7 @@ export function DishBarChart({
     const chartDateColors = useMemo(
         () =>
             chartData.map((data, index) => {
-                return {
-                    ...data,
-                    fill: colors[index] ?? colors[colors.length - 1]
-                }
+                return { ...data, fill: colors[index] ?? colors[colors.length - 1] }
             }),
         [chartData]
     )
@@ -96,7 +75,6 @@ export function DishBarChart({
                             axisLine={false}
                             tickFormatter={(value) => {
                                 return value
-
                                 // return chartConfig[value as keyof typeof chartConfig]?.label
                             }}
                         />

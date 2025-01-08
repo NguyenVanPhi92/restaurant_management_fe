@@ -35,7 +35,6 @@ import {
 import { Check, ChevronsUpDown } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
 import { createContext, useEffect, useState } from 'react'
-
 import TableSkeleton from '@/app/[locale]/manage/orders/table-skeleton'
 import { useAppStore } from '@/components/app-provider'
 import { Button } from '@/components/ui/button'
@@ -91,10 +90,9 @@ export default function OrderTable() {
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
     const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
     const [rowSelection, setRowSelection] = useState({})
-    const [pagination, setPagination] = useState({
-        pageIndex, // Gía trị mặc định ban đầu, không có ý nghĩa khi data được fetch bất đồng bộ
-        pageSize: PAGE_SIZE //default page size
-    })
+    // pageIndex: Gía trị mặc định ban đầu, không có ý nghĩa khi data được fetch bất đồng bộ
+    // 'pageSize: PAGE_SIZE': default page size
+    const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: PAGE_SIZE })
     const updateOrderMutation = useUpdateOrderMutation()
     const { statics, orderObjectByGuestId, servingGuestByTableNumber } = useOrderService(orderList)
 
@@ -123,13 +121,7 @@ export default function OrderTable() {
         onRowSelectionChange: setRowSelection,
         onPaginationChange: setPagination,
         autoResetPageIndex: false,
-        state: {
-            sorting,
-            columnFilters,
-            columnVisibility,
-            rowSelection,
-            pagination
-        }
+        state: { sorting, columnFilters, columnVisibility, rowSelection, pagination }
     })
 
     useEffect(() => {

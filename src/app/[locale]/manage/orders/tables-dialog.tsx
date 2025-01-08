@@ -68,10 +68,9 @@ export function TablesDialog({ onChoose }: { onChoose: (table: TableItem) => voi
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
     const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
     const [rowSelection, setRowSelection] = useState({})
-    const [pagination, setPagination] = useState({
-        pageIndex: 0, // Gía trị mặc định ban đầu, không có ý nghĩa khi data được fetch bất đồng bộ
-        pageSize: PAGE_SIZE //default page size
-    })
+    // pageIndex: Gía trị mặc định ban đầu, không có ý nghĩa khi data được fetch bất đồng bộ
+    // 'pageSize: PAGE_SIZE': default page size
+    const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: PAGE_SIZE })
 
     const table = useReactTable({
         data,
@@ -86,13 +85,7 @@ export function TablesDialog({ onChoose }: { onChoose: (table: TableItem) => voi
         onRowSelectionChange: setRowSelection,
         onPaginationChange: setPagination,
         autoResetPageIndex: false,
-        state: {
-            sorting,
-            columnFilters,
-            columnVisibility,
-            rowSelection,
-            pagination
-        }
+        state: { sorting, columnFilters, columnVisibility, rowSelection, pagination }
     })
 
     useEffect(() => {

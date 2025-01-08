@@ -37,7 +37,6 @@ export default function AddOrder() {
     const [orders, setOrders] = useState<CreateOrdersBodyType['orders']>([])
     const { data } = useDishListQuery()
     const dishes = useMemo(() => data?.payload.data ?? [], [data])
-
     const totalPrice = useMemo(() => {
         return dishes.reduce((result, dish) => {
             const order = orders.find((order) => order.dishId === dish.id)
@@ -47,13 +46,9 @@ export default function AddOrder() {
     }, [dishes, orders])
     const createOrderMutation = useCreateOrderMutation()
     const createGuestMutation = useCreateGuestMutation()
-
     const form = useForm<GuestLoginBodyType>({
         resolver: zodResolver(GuestLoginBody),
-        defaultValues: {
-            name: '',
-            tableNumber: 0
-        }
+        defaultValues: { name: '', tableNumber: 0 }
     })
     const name = form.watch('name')
     const tableNumber = form.watch('tableNumber')
@@ -74,10 +69,7 @@ export default function AddOrder() {
         try {
             let guestId = selectedGuest?.id
             if (isNewGuest) {
-                const guestRes = await createGuestMutation.mutateAsync({
-                    name,
-                    tableNumber
-                })
+                const guestRes = await createGuestMutation.mutateAsync({ name, tableNumber })
                 guestId = guestRes.payload.data.id
             }
             if (!guestId) {
@@ -181,13 +173,7 @@ export default function AddOrder() {
                         </form>
                     </Form>
                 )}
-                {!isNewGuest && (
-                    <GuestsDialog
-                        onChoose={(guest) => {
-                            setSelectedGuest(guest)
-                        }}
-                    />
-                )}
+                {!isNewGuest && <GuestsDialog onChoose={(guest) => setSelectedGuest(guest)} />}
                 {!isNewGuest && selectedGuest && (
                     <div className='grid grid-cols-4 items-center justify-items-start gap-4'>
                         <Label htmlFor='selectedGuest'>Khách đã chọn</Label>

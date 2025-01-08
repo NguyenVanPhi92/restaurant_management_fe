@@ -33,11 +33,7 @@ export default function AddTable() {
     const addTableMutation = useAddTableMutation()
     const form = useForm<CreateTableBodyType>({
         resolver: zodResolver(CreateTableBody),
-        defaultValues: {
-            number: 0,
-            capacity: 2,
-            status: TableStatus.Hidden
-        }
+        defaultValues: { number: 0, capacity: 2, status: TableStatus.Hidden }
     })
 
     // handle submit

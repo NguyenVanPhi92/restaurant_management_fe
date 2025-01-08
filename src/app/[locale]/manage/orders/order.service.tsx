@@ -10,13 +10,7 @@ import { useMemo } from 'react'
 export const useOrderService = (orderList: GetOrdersResType['data']) => {
     const result = useMemo(() => {
         const statics: Statics = {
-            status: {
-                Pending: 0,
-                Processing: 0,
-                Delivered: 0,
-                Paid: 0,
-                Rejected: 0
-            },
+            status: { Pending: 0, Processing: 0, Delivered: 0, Paid: 0, Rejected: 0 },
             table: {}
         }
         const orderObjectByGuestId: OrderObjectByGuestID = {}

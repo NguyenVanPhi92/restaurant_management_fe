@@ -53,7 +53,6 @@ const menuItems: {
 // Server: Món ăn, Đăng nhập. Do server không biết trạng thái đăng nhập của user
 // CLient: Đầu tiên client sẽ hiển thị là Món ăn, Đăng nhập.
 // Nhưng ngay sau đó thì client render ra là Món ăn, Đơn hàng, Quản lý do đã check được trạng thái đăng nhập
-
 export default function NavItems({ className }: { className?: string }) {
     const t = useTranslations('NavItem')
     const role = useAppStore((state) => state.role)

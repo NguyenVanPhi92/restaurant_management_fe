@@ -4,9 +4,9 @@ import { LoginBodyType } from '@/schemaValidations/auth.schema'
 import jwt from 'jsonwebtoken'
 import { cookies } from 'next/headers'
 
-// create method sync
+// create method async
 export async function POST(request: Request) {
-    // ep kieu body khi client post len server se co kieu LoginBodyType
+    // as LoginBodyType: ép kiểu body khi client post lên server sẽ có kiểu LoginBodyType
     const body = (await request.json()) as LoginBodyType
     const cookieStore = cookies()
 

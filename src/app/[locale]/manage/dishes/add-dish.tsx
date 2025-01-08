@@ -54,7 +54,6 @@ export default function AddDish() {
         if (file) return URL.createObjectURL(file)
         return image
     }, [file, image])
-
     // handle event
     const reset = () => {
         form.reset()

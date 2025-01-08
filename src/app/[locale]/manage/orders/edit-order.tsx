@@ -48,14 +48,9 @@ export default function EditOrder({
     const [selectedDish, setSelectedDish] = useState<DishListResType['data'][0] | null>(null)
     const updateOrderMutation = useUpdateOrderMutation()
     const { data } = useGetOrderDetailQuery({ id: id as number, enabled: Boolean(id) })
-
     const form = useForm<UpdateOrderBodyType>({
         resolver: zodResolver(UpdateOrderBody),
-        defaultValues: {
-            status: OrderStatus.Pending,
-            dishId: 0,
-            quantity: 1
-        }
+        defaultValues: { status: OrderStatus.Pending, dishId: 0, quantity: 1 }
     })
 
     useEffect(() => {

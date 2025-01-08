@@ -12,7 +12,6 @@ import {
     getSortedRowModel,
     useReactTable
 } from '@tanstack/react-table'
-
 import AddEmployee from '@/app/[locale]/manage/accounts/add-employee'
 import EditEmployee from '@/app/[locale]/manage/accounts/edit-employee'
 import AutoPagination from '@/components/auto-pagination'
@@ -68,10 +67,7 @@ const AccountTableContext = createContext<{
 })
 
 export const columns: ColumnDef<AccountType>[] = [
-    {
-        accessorKey: 'id',
-        header: 'ID'
-    },
+    { accessorKey: 'id', header: 'ID' },
     {
         accessorKey: 'avatar',
         header: 'Avatar',
@@ -108,13 +104,8 @@ export const columns: ColumnDef<AccountType>[] = [
         enableHiding: false,
         cell: function Actions({ row }) {
             const { setEmployeeIdEdit, setEmployeeDelete } = useContext(AccountTableContext)
-            const openEditEmployee = () => {
-                setEmployeeIdEdit(row.original.id)
-            }
-
-            const openDeleteEmployee = () => {
-                setEmployeeDelete(row.original)
-            }
+            const openEditEmployee = () => setEmployeeIdEdit(row.original.id)
+            const openDeleteEmployee = () => setEmployeeDelete(row.original)
             return (
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -143,7 +134,6 @@ function AlertDialogDeleteAccount({
     setEmployeeDelete: (value: AccountItem | null) => void
 }) {
     const { mutateAsync } = useDeleteAccountMutation()
-
     //handle event
     const deleteAccount = async () => {
         if (employeeDelete) {
@@ -197,10 +187,9 @@ export default function AccountTable() {
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
     const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
     const [rowSelection, setRowSelection] = useState({})
-    const [pagination, setPagination] = useState({
-        pageIndex, // Gía trị mặc định ban đầu, không có ý nghĩa khi data được fetch bất đồng bộ
-        pageSize: PAGE_SIZE //default page size
-    })
+    // pageIndex: Gía trị mặc định ban đầu, không có ý nghĩa khi data được fetch bất đồng bộ
+    // 'pageSize: PAGE_SIZE': default page size
+    const [pagination, setPagination] = useState({ pageIndex, pageSize: PAGE_SIZE })
 
     const table = useReactTable({
         data,
@@ -215,30 +204,15 @@ export default function AccountTable() {
         onRowSelectionChange: setRowSelection,
         onPaginationChange: setPagination,
         autoResetPageIndex: false,
-        state: {
-            sorting,
-            columnFilters,
-            columnVisibility,
-            rowSelection,
-            pagination
-        }
+        state: { sorting, columnFilters, columnVisibility, rowSelection, pagination }
     })
-
     useEffect(() => {
-        table.setPagination({
-            pageIndex,
-            pageSize: PAGE_SIZE
-        })
+        table.setPagination({ pageIndex, pageSize: PAGE_SIZE })
     }, [table, pageIndex])
 
     return (
         <AccountTableContext.Provider
-            value={{
-                employeeIdEdit,
-                setEmployeeIdEdit,
-                employeeDelete,
-                setEmployeeDelete
-            }}
+            value={{ employeeIdEdit, setEmployeeIdEdit, employeeDelete, setEmployeeDelete }}
         >
             <div className='w-full'>
                 <EditEmployee

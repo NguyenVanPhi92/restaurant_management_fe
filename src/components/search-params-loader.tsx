@@ -1,5 +1,4 @@
 'use client' // use client mode
-
 import { type ReadonlyURLSearchParams, useSearchParams } from 'next/navigation'
 import React, { Suspense, useEffect, useState } from 'react'
 
@@ -12,7 +11,6 @@ function Suspender(props: SearchParamsLoaderProps) {
         </Suspense>
     )
 }
-
 function Suspendend({ onParamsReceived }: SearchParamsLoaderProps) {
     const searchParams = useSearchParams()
     useEffect(() => {
@@ -20,14 +18,9 @@ function Suspendend({ onParamsReceived }: SearchParamsLoaderProps) {
     })
     return null
 }
-
 const SearchParamsLoader = React.memo(Suspender)
 export default SearchParamsLoader
-
 export const useSearchParamsLoader = () => {
     const [searchParams, setSearchParams] = useState<ReadonlyURLSearchParams | null>(null)
-    return {
-        searchParams,
-        setSearchParams
-    }
+    return { searchParams, setSearchParams }
 }

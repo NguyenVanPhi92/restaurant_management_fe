@@ -43,14 +43,8 @@ export default function OrdersCart() {
                 return result
             },
             {
-                waitingForPaying: {
-                    price: 0,
-                    quantity: 0
-                },
-                paid: {
-                    price: 0,
-                    quantity: 0
-                }
+                waitingForPaying: { price: 0, quantity: 0 },
+                paid: { price: 0, quantity: 0 }
             }
         )
     }, [orders])
@@ -59,15 +53,12 @@ export default function OrdersCart() {
         if (socket?.connected) {
             onConnect()
         }
-
         function onConnect() {
             console.log(socket?.id)
         }
-
         function onDisconnect() {
             console.log('disconnect')
         }
-
         function onUpdateOrder(data: UpdateOrderResType['data']) {
             const {
                 dishSnapshot: { name },
@@ -80,7 +71,6 @@ export default function OrdersCart() {
             })
             refetch()
         }
-
         function onPayment(data: PayGuestOrdersResType['data']) {
             const { guest } = data[0]
             toast({
@@ -88,12 +78,10 @@ export default function OrdersCart() {
             })
             refetch()
         }
-
         socket?.on('update-order', onUpdateOrder)
         socket?.on('payment', onPayment)
         socket?.on('connect', onConnect)
         socket?.on('disconnect', onDisconnect)
-
         return () => {
             socket?.off('connect', onConnect)
             socket?.off('disconnect', onDisconnect)

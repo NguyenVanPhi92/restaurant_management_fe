@@ -25,11 +25,7 @@ export default function GuestLoginForm() {
     const loginMutation = useGuestLoginMutation()
     const form = useForm<GuestLoginBodyType>({
         resolver: zodResolver(GuestLoginBody),
-        defaultValues: {
-            name: '',
-            token: token ?? '',
-            tableNumber
-        }
+        defaultValues: { name: '', token: token ?? '', tableNumber }
     })
 
     useEffect(() => {

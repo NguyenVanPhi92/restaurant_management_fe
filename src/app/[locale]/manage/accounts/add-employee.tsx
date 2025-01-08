@@ -34,13 +34,7 @@ export default function AddEmployee() {
     const avatarInputRef = useRef<HTMLInputElement | null>(null)
     const form = useForm<CreateEmployeeAccountBodyType>({
         resolver: zodResolver(CreateEmployeeAccountBody),
-        defaultValues: {
-            name: '',
-            email: '',
-            avatar: undefined,
-            password: '',
-            confirmPassword: ''
-        }
+        defaultValues: { name: '', email: '', avatar: undefined, password: '', confirmPassword: '' }
     })
     const avatar = form.watch('avatar')
     const name = form.watch('name')
@@ -48,13 +42,11 @@ export default function AddEmployee() {
         if (file) return URL.createObjectURL(file)
         return avatar
     }, [file, avatar])
-
     // handle event
     const reset = () => {
         form.reset()
         setFile(null)
     }
-
     const onSubmit = async (values: CreateEmployeeAccountBodyType) => {
         if (addAccountMutation.isPending) return
         try {

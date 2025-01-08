@@ -10,22 +10,12 @@ type Props = {
 }
 
 export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
-    const t = await getTranslations({
-        locale: params.locale,
-        namespace: 'GuestMenu'
-    })
-
+    const t = await getTranslations({ locale: params.locale, namespace: 'GuestMenu' })
     const url = envConfig.NEXT_PUBLIC_URL + `/${params.locale}/guest/menu`
-
     return {
         title: t('title'),
         description: t('description'),
-        openGraph: {
-            ...baseOpenGraph,
-            title: t('title'),
-            description: t('description'),
-            url
-        },
+        openGraph: { ...baseOpenGraph, title: t('title'), description: t('description'), url },
         alternates: { canonical: url },
         robots: { index: false }
     }

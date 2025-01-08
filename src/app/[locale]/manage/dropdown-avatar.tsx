@@ -22,7 +22,6 @@ export default function DropdownAvatar() {
     const setRole = useAppStore((state) => state.setRole)
     const disconnectSocket = useAppStore((state) => state.disconnectSocket)
     const account = data?.payload.data
-
     // handle logout
     const logout = async () => {
         if (logoutMutation.isPending) return

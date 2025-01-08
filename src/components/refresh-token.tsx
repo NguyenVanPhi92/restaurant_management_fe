@@ -12,7 +12,6 @@ export default function RefreshToken() {
     const router = useRouter()
     const socket = useAppStore((state) => state.socket)
     const disconnectSocket = useAppStore((state) => state.disconnectSocket)
-
     useEffect(() => {
         if (UNAUTHENTICATED_PATH.includes(pathname)) return
         let interval: any = null

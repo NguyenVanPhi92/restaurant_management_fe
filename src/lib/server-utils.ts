@@ -1,7 +1,5 @@
 import { convert } from 'html-to-text'
 
 export const htmlToTextForDescription = (html: string) => {
-    return convert(html, {
-        limits: { maxInputLength: 140 }
-    })
+    return convert(html, { limits: { maxInputLength: 140 } })
 }

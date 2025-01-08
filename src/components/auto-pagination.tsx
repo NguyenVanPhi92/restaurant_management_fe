@@ -75,7 +75,6 @@ export default function AutoPagination({
             .fill(0)
             .map((_, index) => {
                 const pageNumber = index + 1
-
                 // Điều kiện để return về ...
                 if (
                     page <= RANGE * 2 + 1 &&
@@ -113,9 +112,7 @@ export default function AutoPagination({
                         )}
                         {!isLink && (
                             <Button
-                                onClick={() => {
-                                    onClick(pageNumber)
-                                }}
+                                onClick={() => onClick(pageNumber)}
                                 variant={pageNumber === page ? 'outline' : 'ghost'}
                                 className='w-9 h-9 p-0'
                             >
@@ -135,17 +132,11 @@ export default function AutoPagination({
                         <PaginationPrevious
                             href={{
                                 pathname,
-                                query: {
-                                    page: page - 1
-                                }
+                                query: { page: page - 1 }
                             }}
-                            className={cn({
-                                'cursor-not-allowed': page === 1
-                            })}
+                            className={cn({ 'cursor-not-allowed': page === 1 })}
                             onClick={(e) => {
-                                if (page === 1) {
-                                    e.preventDefault()
-                                }
+                                if (page === 1) e.preventDefault()
                             }}
                         />
                     )}
@@ -154,9 +145,7 @@ export default function AutoPagination({
                             disabled={page === 1}
                             className='h-9 p-0 px-2'
                             variant={'ghost'}
-                            onClick={() => {
-                                onClick(page - 1)
-                            }}
+                            onClick={() => onClick(page - 1)}
                         >
                             <ChevronLeft className='w-5 h-5' /> Previous
                         </Button>
@@ -167,19 +156,12 @@ export default function AutoPagination({
                 <PaginationItem>
                     {isLink && (
                         <PaginationNext
-                            href={{
-                                pathname,
-                                query: {
-                                    page: page + 1
-                                }
-                            }}
+                            href={{ pathname, query: { page: page + 1 } }}
                             className={cn({
                                 'cursor-not-allowed': page === pageSize
                             })}
                             onClick={(e) => {
-                                if (page === pageSize) {
-                                    e.preventDefault()
-                                }
+                                if (page === pageSize) e.preventDefault()
                             }}
                         />
                     )}
@@ -188,9 +170,7 @@ export default function AutoPagination({
                             disabled={page === pageSize}
                             className='h-9 p-0 px-2'
                             variant={'ghost'}
-                            onClick={() => {
-                                onClick(page + 1)
-                            }}
+                            onClick={() => onClick(page + 1)}
                         >
                             Next <ChevronRight className='w-5 h-5' />
                         </Button>

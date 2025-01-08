@@ -58,7 +58,6 @@ export default function EditDish({
     })
     const image = form.watch('image')
     const name = form.watch('name')
-
     const previewAvatarFromFile = useMemo(() => {
         if (file) return URL.createObjectURL(file)
         return image
@@ -67,13 +66,7 @@ export default function EditDish({
     useEffect(() => {
         if (data) {
             const { name, image, description, price, status } = data.payload.data
-            form.reset({
-                name,
-                image: image ?? undefined,
-                description,
-                price,
-                status
-            })
+            form.reset({ name, image: image ?? undefined, description, price, status })
         }
     }, [data, form])
 

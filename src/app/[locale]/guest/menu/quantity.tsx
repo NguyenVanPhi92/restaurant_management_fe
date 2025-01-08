@@ -27,9 +27,7 @@ export default function Quantity({
                 onChange={(e) => {
                     let value = e.target.value
                     const numberValue = Number(value)
-                    if (isNaN(numberValue)) {
-                        return
-                    }
+                    if (isNaN(numberValue)) return
                     onChange(numberValue)
                 }}
             />

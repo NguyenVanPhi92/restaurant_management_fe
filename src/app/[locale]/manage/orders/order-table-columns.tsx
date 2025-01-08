@@ -189,10 +189,7 @@ const orderTableColumns: ColumnDef<OrderItem>[] = [
         enableHiding: false,
         cell: function Actions({ row }) {
             const { setOrderIdEdit } = useContext(OrderTableContext)
-            const openEditOrder = () => {
-                setOrderIdEdit(row.original.id)
-            }
-
+            const openEditOrder = () => setOrderIdEdit(row.original.id)
             return (
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>

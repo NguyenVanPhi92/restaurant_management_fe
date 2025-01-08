@@ -29,13 +29,9 @@ export default function MenuOrder() {
     // handle event
     const handleQuantityChange = (dishId: number, quantity: number) => {
         setOrders((prevOrders) => {
-            if (quantity === 0) {
-                return prevOrders.filter((order) => order.dishId !== dishId)
-            }
+            if (quantity === 0) return prevOrders.filter((order) => order.dishId !== dishId)
             const index = prevOrders.findIndex((order) => order.dishId === dishId)
-            if (index === -1) {
-                return [...prevOrders, { dishId, quantity }]
-            }
+            if (index === -1) return [...prevOrders, { dishId, quantity }]
             const newOrders = [...prevOrders]
             newOrders[index] = { ...newOrders[index], quantity }
             return newOrders
@@ -47,9 +43,7 @@ export default function MenuOrder() {
             await mutateAsync(orders)
             router.push(`/guest/orders`)
         } catch (error) {
-            handleErrorApi({
-                error
-            })
+            handleErrorApi({ error })
         }
     }
 

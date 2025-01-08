@@ -9,28 +9,16 @@ import {
 import { LoginResType } from '@/schemaValidations/auth.schema'
 import { redirect } from '@/navigation'
 import Cookies from 'js-cookie'
-type CustomOptions = Omit<RequestInit, 'method'> & {
-    baseUrl?: string | undefined
-}
 
+type CustomOptions = Omit<RequestInit, 'method'> & { baseUrl?: string | undefined }
 const ENTITY_ERROR_STATUS = 422
 const AUTHENTICATION_ERROR_STATUS = 401
-
-type EntityErrorPayload = {
-    message: string
-    errors: {
-        field: string
-        message: string
-    }[]
-}
+type EntityErrorPayload = { message: string; errors: { field: string; message: string }[] }
 
 // catch error http api
 export class HttpError extends Error {
     status: number
-    payload: {
-        message: string
-        [key: string]: any
-    }
+    payload: { message: string; [key: string]: any }
     constructor({
         status,
         payload,
@@ -45,7 +33,6 @@ export class HttpError extends Error {
         this.payload = payload
     }
 }
-
 // catch error status vd: 422 401
 export class EntityError extends HttpError {
     status: typeof ENTITY_ERROR_STATUS
@@ -62,10 +49,8 @@ export class EntityError extends HttpError {
         this.payload = payload
     }
 }
-
 let clientLogoutRequest: null | Promise<any> = null
 const isClient = typeof window !== 'undefined' //Check current code running on server or client
-
 const request = async <Response>(
     method: 'GET' | 'POST' | 'PUT' | 'DELETE',
     url: string,
@@ -77,19 +62,11 @@ const request = async <Response>(
     } else if (options?.body) {
         body = JSON.stringify(options.body)
     }
-    const baseHeaders: {
-        [key: string]: string
-    } =
-        body instanceof FormData
-            ? {}
-            : {
-                  'Content-Type': 'application/json'
-              }
+    const baseHeaders: { [key: string]: string } =
+        body instanceof FormData ? {} : { 'Content-Type': 'application/json' }
     if (isClient) {
         const accessToken = getAccessTokenFromLocalStorage()
-        if (accessToken) {
-            baseHeaders.Authorization = `Bearer ${accessToken}`
-        }
+        if (accessToken) baseHeaders.Authorization = `Bearer ${accessToken}`
     }
     // Nếu không truyền baseUrl (hoặc baseUrl = undefined) thì lấy từ envConfig.NEXT_PUBLIC_API_ENDPOINT
     // Nếu truyền baseUrl thì lấy giá trị truyền vào, truyền vào '' thì đồng nghĩa với việc chúng ta gọi API đến Next.js Server
@@ -100,28 +77,16 @@ const request = async <Response>(
     const fullUrl = `${baseUrl}/${normalizePath(url)}`
     const res = await fetch(fullUrl, {
         ...options,
-        headers: {
-            ...baseHeaders,
-            ...options?.headers
-        } as any,
+        headers: { ...baseHeaders, ...options?.headers } as any,
         body,
         method
     })
     const payload: Response = await res.json()
-    const data = {
-        status: res.status,
-        payload
-    }
-
+    const data = { status: res.status, payload }
     // Interceptor là nời chúng ta xử lý request và response trước khi trả về cho phía component
     if (!res.ok) {
         if (res.status === ENTITY_ERROR_STATUS) {
-            throw new EntityError(
-                data as {
-                    status: 422
-                    payload: EntityErrorPayload
-                }
-            )
+            throw new EntityError(data as { status: 422; payload: EntityErrorPayload })
         } else if (res.status === AUTHENTICATION_ERROR_STATUS) {
             if (isClient) {
                 const locale = Cookies.get('NEXT_LOCALE')
@@ -129,9 +94,7 @@ const request = async <Response>(
                     clientLogoutRequest = fetch('/api/auth/logout', {
                         method: 'POST',
                         body: null, // Logout mình sẽ cho phép luôn luôn thành công
-                        headers: {
-                            ...baseHeaders
-                        } as any
+                        headers: { ...baseHeaders } as any
                     })
                     try {
                         await clientLogoutRequest

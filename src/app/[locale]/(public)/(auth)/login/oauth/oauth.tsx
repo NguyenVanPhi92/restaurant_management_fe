@@ -11,9 +11,7 @@ import { useEffect, useRef } from 'react'
 export const metadata: Metadata = {
     title: 'Google Login Redirect',
     description: 'Google Login Redirect',
-    robots: {
-        index: false
-    }
+    robots: { index: false }
 }
 
 export default function Oauth() {
@@ -38,18 +36,14 @@ export default function Oauth() {
                         router.push('/manage/dashboard')
                     })
                     .catch((e) => {
-                        toast({
-                            description: e.message || 'Có lỗi xảy ra'
-                        })
+                        toast({ description: e.message || 'Có lỗi xảy ra' })
                     })
                 count.current++
             }
         } else {
             if (count.current === 0) {
                 setTimeout(() => {
-                    toast({
-                        description: message || 'Có lỗi xảy ra'
-                    })
+                    toast({ description: message || 'Có lỗi xảy ra' })
                 })
                 count.current++
             }

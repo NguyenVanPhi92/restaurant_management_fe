@@ -12,10 +12,8 @@ export default function ListenLogoutSocket() {
     const setRole = useAppStore((state) => state.setRole)
     const disconnectSocket = useAppStore((state) => state.disconnectSocket)
     const socket = useAppStore((state) => state.socket)
-
     useEffect(() => {
         if (UNAUTHENTICATED_PATH.includes(pathname)) return
-
         async function onLogout() {
             if (isPending) return
             try {
