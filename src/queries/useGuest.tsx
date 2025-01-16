@@ -5,5 +5,5 @@ export const useGuestLoginMutation = () => useMutation({ mutationFn: guestApiReq
 export const useGuestLogoutMutation = () => useMutation({ mutationFn: guestApiRequest.logout })
 export const useGuestOrderMutation = () => useMutation({ mutationFn: guestApiRequest.order })
 export const useGuestGetOrderListQuery = () => {
-    return useQuery({ queryFn: guestApiRequest.getOrderList, queryKey: ['guest-orders'] })
+  return useQuery({ queryFn: guestApiRequest.getOrderList, queryKey: ['guest-orders'] })
 }

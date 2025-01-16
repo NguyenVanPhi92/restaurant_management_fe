@@ -5,5 +5,5 @@ import { useMutation } from '@tanstack/react-query'
 export const useLoginMutation = () => useMutation({ mutationFn: authApiRequest.login })
 export const useLogoutMutation = () => useMutation({ mutationFn: authApiRequest.logout })
 export const useSetTokenToCookieMutation = () => {
-    return useMutation({ mutationFn: authApiRequest.setTokenToCookie })
+  return useMutation({ mutationFn: authApiRequest.setTokenToCookie })
 }
