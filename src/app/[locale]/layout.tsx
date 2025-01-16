@@ -16,55 +16,45 @@ import './globals.css'
 const fontSans = FontSans({ subsets: ['latin'], variable: '--font-sans' })
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: Locale } }) {
-    const t = await getTranslations({ locale, namespace: 'Brand' })
-    return {
-        title: { template: `%s | ${t('title')}`, default: t('defaultTitle') },
-        openGraph: { ...baseOpenGraph }
-        // other: {
-        //   'google-site-verification': 'KKr5Sgn6rrXntMUp1nDIoQR7mJQujE4BExrlgcFvGTg'
-        // }
-    }
+  const t = await getTranslations({ locale, namespace: 'Brand' })
+  return {
+    title: { template: `%s | ${t('title')}`, default: t('defaultTitle') },
+    openGraph: { ...baseOpenGraph }
+    // other: {
+    //   'google-site-verification': 'KKr5Sgn6rrXntMUp1nDIoQR7mJQujE4BExrlgcFvGTg'
+    // }
+  }
 }
 
 export function generateStaticParams() {
-    return locales.map((locale) => ({ locale }))
+  return locales.map((locale) => ({ locale }))
 }
 
 export default async function RootLayout({
-    children,
-    params: { locale }
+  children,
+  params: { locale }
 }: Readonly<{
-    children: React.ReactNode
-    params: { locale: string }
+  children: React.ReactNode
+  params: { locale: string }
 }>) {
-    unstable_setRequestLocale(locale)
-    const messages = await getMessages()
-
-    return (
-        <html lang={locale} suppressHydrationWarning>
-            <body
-                className={cn(
-                    'min-h-screen bg-background font-sans antialiased',
-                    fontSans.variable
-                )}
-            >
-                <NextTopLoader showSpinner={false} color='hsl(var(--foreground))' />
-                <NextIntlClientProvider messages={messages}>
-                    <AppProvider>
-                        <ThemeProvider
-                            attribute='class'
-                            defaultTheme='system'
-                            enableSystem
-                            disableTransitionOnChange
-                        >
-                            {children}
-                            <Footer />
-                            <Toaster />
-                        </ThemeProvider>
-                    </AppProvider>
-                </NextIntlClientProvider>
-                <GoogleTag />
-            </body>
-        </html>
-    )
+  unstable_setRequestLocale(locale)
+  const messages = await getMessages()
+  // ROOT CODE
+  return (
+    <html lang={locale} suppressHydrationWarning>
+      <body className={cn('min-h-screen bg-background font-sans antialiased', fontSans.variable)}>
+        <NextTopLoader showSpinner={false} color='hsl(var(--foreground))' />
+        <NextIntlClientProvider messages={messages}>
+          <AppProvider>
+            <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
+              {children}
+              <Footer />
+              <Toaster />
+            </ThemeProvider>
+          </AppProvider>
+        </NextIntlClientProvider>
+        <GoogleTag />
+      </body>
+    </html>
+  )
 }

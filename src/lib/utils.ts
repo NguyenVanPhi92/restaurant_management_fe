@@ -20,7 +20,6 @@ export function cn(...inputs: ClassValue[]) {
 
 // Xóa đi ký tự `/` đầu tiên của path
 export const normalizePath = (path: string) => (path.startsWith('/') ? path.slice(1) : path)
-
 export const handleErrorApi = ({
   error,
   setError,
@@ -43,7 +42,6 @@ export const handleErrorApi = ({
     })
   }
 }
-
 //Check current code running on server or client
 const isBrowser = typeof window !== 'undefined'
 export const getAccessTokenFromLocalStorage = () => (isBrowser ? localStorage.getItem('accessToken') : null)
@@ -94,10 +92,7 @@ export const checkAndRefreshToken = async (param?: {
   }
 }
 export const formatCurrency = (number: number) => {
-  return new Intl.NumberFormat('vi-VN', {
-    style: 'currency',
-    currency: 'VND'
-  }).format(number)
+  return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(number)
 }
 export const getVietnameseDishStatus = (status: (typeof DishStatus)[keyof typeof DishStatus]) => {
   switch (status) {
@@ -154,9 +149,7 @@ export const formatDateTimeToTimeString = (date: string | Date) => {
   return format(date instanceof Date ? date : new Date(date), 'HH:mm:ss')
 }
 export const generateSocketInstace = (accessToken: string) => {
-  return io(envConfig.NEXT_PUBLIC_API_ENDPOINT, {
-    auth: { Authorization: `Bearer ${accessToken}` }
-  })
+  return io(envConfig.NEXT_PUBLIC_API_ENDPOINT, { auth: { Authorization: `Bearer ${accessToken}` } })
 }
 export const OrderStatusIcon = {
   [OrderStatus.Pending]: Loader,
