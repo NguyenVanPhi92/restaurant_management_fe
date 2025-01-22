@@ -9,11 +9,7 @@ export const useDishListQuery = () => {
   return useQuery({ queryKey: ['dishes'], queryFn: dishApiRequest.list })
 }
 export const useGetDishQuery = ({ id, enabled }: { id: number; enabled: boolean }) => {
-  return useQuery({
-    queryKey: ['dishes', id],
-    queryFn: () => dishApiRequest.getDish(id),
-    enabled
-  })
+  return useQuery({ queryKey: ['dishes', id], queryFn: () => dishApiRequest.getDish(id), enabled })
 }
 export const useAddDishMutation = () => {
   const queryClient = useQueryClient()

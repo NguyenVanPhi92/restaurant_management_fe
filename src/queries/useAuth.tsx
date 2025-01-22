@@ -6,6 +6,4 @@ import { useMutation } from '@tanstack/react-query'
 // useQueryClient: Invalidate/refresh cache when data change Ex: Add, Update, Delete
 export const useLoginMutation = () => useMutation({ mutationFn: authApiRequest.login })
 export const useLogoutMutation = () => useMutation({ mutationFn: authApiRequest.logout })
-export const useSetTokenToCookieMutation = () => {
-  return useMutation({ mutationFn: authApiRequest.setTokenToCookie })
-}
+export const useSetTokenToCookieMutation = () => useMutation({ mutationFn: authApiRequest.setTokenToCookie })

@@ -47,7 +47,7 @@ export default function EditTable({
     if (updateTableMutation.isPending) return
     try {
       let body: UpdateTableBodyType & { id: number } = { id: id as number, ...values }
-      const result = await updateTableMutation.mutateAsync(body)
+      const result: any = await updateTableMutation.mutateAsync(body)
       toast({ description: result.payload.message })
       reset()
       onSubmitSuccess && onSubmitSuccess()

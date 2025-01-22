@@ -36,7 +36,7 @@ export default function GuestLoginForm() {
   async function onSubmit(values: GuestLoginBodyType) {
     if (loginMutation.isPending) return
     try {
-      const result = await loginMutation.mutateAsync(values)
+      const result: any = await loginMutation.mutateAsync(values)
       setRole(result.payload.data.guest.role)
       setSocket(generateSocketInstace(result.payload.data.accessToken))
       router.push('/guest/menu')

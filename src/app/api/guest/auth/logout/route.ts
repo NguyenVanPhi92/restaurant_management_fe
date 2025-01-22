@@ -12,7 +12,7 @@ export async function POST(request: Request) {
     return Response.json({ message: 'Không nhận được access token hoặc refresh token' }, { status: 200 })
   }
   try {
-    const result = await guestApiRequest.sLogout({ accessToken, refreshToken })
+    const result: any = await guestApiRequest.sLogout({ accessToken, refreshToken })
     return Response.json(result.payload)
   } catch (error) {
     console.log(error)

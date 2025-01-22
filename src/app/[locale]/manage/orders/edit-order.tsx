@@ -41,11 +41,7 @@ export default function EditOrder({
         dishSnapshot: { dishId },
         quantity
       } = data.payload.data
-      form.reset({
-        status,
-        dishId: dishId ?? 0,
-        quantity
-      })
+      form.reset({ status, dishId: dishId ?? 0, quantity })
       setSelectedDish(data.payload.data.dishSnapshot)
     }
   }, [data, form])
@@ -55,7 +51,7 @@ export default function EditOrder({
     if (updateOrderMutation.isPending) return
     try {
       let body: UpdateOrderBodyType & { orderId: number } = { orderId: id as number, ...values }
-      const result = await updateOrderMutation.mutateAsync(body)
+      const result: any = await updateOrderMutation.mutateAsync(body)
       toast({ description: result.payload.message })
       reset()
       onSubmitSuccess && onSubmitSuccess()
