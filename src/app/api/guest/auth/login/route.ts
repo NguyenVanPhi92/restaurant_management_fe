@@ -4,6 +4,7 @@ import { GuestLoginBodyType } from '@/schemaValidations/guest.schema'
 import jwt from 'jsonwebtoken'
 import { cookies } from 'next/headers'
 
+// Call API to Server Next.js
 export async function POST(request: Request) {
   const body = (await request.json()) as GuestLoginBodyType
   const cookieStore = cookies()

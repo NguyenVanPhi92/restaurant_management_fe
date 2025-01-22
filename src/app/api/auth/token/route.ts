@@ -2,6 +2,7 @@ import { HttpError } from '@/lib/http'
 import jwt from 'jsonwebtoken'
 import { cookies } from 'next/headers'
 
+// Call API to Server Next.js
 export async function POST(request: Request) {
   const body = (await request.json()) as { accessToken: string; refreshToken: string }
   const { accessToken, refreshToken } = body

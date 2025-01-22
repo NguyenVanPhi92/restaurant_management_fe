@@ -7,6 +7,7 @@ import {
   RefreshTokenResType
 } from '@/schemaValidations/auth.schema'
 
+// Call API to Server
 const authApiRequest = {
   refreshTokenRequest: null as Promise<{
     status: number

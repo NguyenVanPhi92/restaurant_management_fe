@@ -2,6 +2,7 @@ import http from '@/lib/http'
 import { DashboardIndicatorQueryParamsType, DashboardIndicatorResType } from '@/schemaValidations/indicator.schema'
 import queryString from 'query-string'
 
+// Call API to Server
 const indicatorApiRequest = {
   getDashboardIndicators: (queryParams: DashboardIndicatorQueryParamsType) =>
     http.get<DashboardIndicatorResType>(

@@ -8,6 +8,7 @@ import {
   GuestLoginResType
 } from '@/schemaValidations/guest.schema'
 
+// Call API to Server
 const guestApiRequest = {
   refreshTokenRequest: null as Promise<{
     status: number

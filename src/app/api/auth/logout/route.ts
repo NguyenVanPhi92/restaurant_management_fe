@@ -1,6 +1,7 @@
 import authApiRequest from '@/apiRequests/auth'
 import { cookies } from 'next/headers'
 
+// Call API to Server Next.js
 export async function POST(request: Request) {
   const cookieStore = cookies()
   const accessToken = cookieStore.get('accessToken')?.value

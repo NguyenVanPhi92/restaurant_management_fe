@@ -4,12 +4,12 @@ import { LoginBodyType } from '@/schemaValidations/auth.schema'
 import jwt from 'jsonwebtoken'
 import { cookies } from 'next/headers'
 
+// Call API to Server Next.js
 // create method async
 export async function POST(request: Request) {
   // as LoginBodyType: ép kiểu body khi client post lên server sẽ có kiểu LoginBodyType
   const body = (await request.json()) as LoginBodyType
   const cookieStore = cookies()
-
   try {
     const { payload } = await authApiRequest.sLogin(body)
     const { accessToken, refreshToken } = payload.data

@@ -6,18 +6,12 @@ export const useAccountMe = () => {
   return useQuery({ queryKey: ['account-me'], queryFn: accountApiRequest.me })
 }
 export const useUpdateMeMutation = () => useMutation({ mutationFn: accountApiRequest.updateMe })
-export const useChangePasswordMutation = () => {
-  return useMutation({ mutationFn: accountApiRequest.changePassword })
-}
+export const useChangePasswordMutation = () => useMutation({ mutationFn: accountApiRequest.changePassword })
 export const useGetAccountList = () => {
   return useQuery({ queryKey: ['accounts'], queryFn: accountApiRequest.list })
 }
 export const useGetAccount = ({ id, enabled }: { id: number; enabled: boolean }) => {
-  return useQuery({
-    queryKey: ['accounts', id],
-    queryFn: () => accountApiRequest.getEmployee(id),
-    enabled
-  })
+  return useQuery({ queryKey: ['accounts', id], queryFn: () => accountApiRequest.getEmployee(id), enabled })
 }
 export const useAddAccountMutation = () => {
   const queryClient = useQueryClient()

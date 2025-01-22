@@ -42,8 +42,7 @@ export const handleErrorApi = ({
     })
   }
 }
-//Check current code running on server or client
-const isBrowser = typeof window !== 'undefined'
+const isBrowser = typeof window !== 'undefined' //Check current code running on server or client
 export const getAccessTokenFromLocalStorage = () => (isBrowser ? localStorage.getItem('accessToken') : null)
 export const getRefreshTokenFromLocalStorage = () => (isBrowser ? localStorage.getItem('refreshToken') : null)
 export const setAccessTokenToLocalStorage = (value: string) => isBrowser && localStorage.setItem('accessToken', value)
@@ -58,7 +57,7 @@ export const checkAndRefreshToken = async (param?: {
   force?: boolean
 }) => {
   // Không nên đưa logic lấy access và refresh token ra khỏi cái function `checkAndRefreshToken`
-  // Vì để mỗi lần mà checkAndRefreshToken() được gọi thì chúng ta se có một access và refresh token mới
+  // Vì để mỗi lần mà checkAndRefreshToken() được gọi thì chúng ta sẽ có một access và refresh token mới
   // Tránh hiện tượng bug nó lấy access và refresh token cũ ở lần đầu rồi gọi cho các lần tiếp theo
   const accessToken = getAccessTokenFromLocalStorage()
   const refreshToken = getRefreshTokenFromLocalStorage()

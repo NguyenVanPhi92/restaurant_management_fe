@@ -47,10 +47,7 @@ export default function LoginForm() {
   const setSocket = useAppStore((state) => state.setSocket)
   const setRole = useAppStore((state) => state.setRole)
 
-  const form = useForm<LoginBodyType>({
-    resolver: zodResolver(LoginBody),
-    defaultValues: { email: '', password: '' }
-  })
+  const form = useForm<LoginBodyType>({ resolver: zodResolver(LoginBody), defaultValues: { email: '', password: '' } })
   const router = useRouter()
 
   useEffect(() => {

@@ -13,9 +13,10 @@ import {
 } from '@/schemaValidations/account.schema'
 import queryString from 'query-string'
 
-// all restfullAPI
+// All restfullAPI
 const prefix = '/accounts'
 
+// Call API to Server
 const accountApiRequest = {
   me: () => http.get<AccountResType>(`${prefix}/me`),
   sMe: (accessToken: string) =>

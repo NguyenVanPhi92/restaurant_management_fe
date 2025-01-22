@@ -1,6 +1,7 @@
 import http from '@/lib/http'
 import { UploadImageResType } from '@/schemaValidations/media.schema'
 
+// Call API to Server
 export const mediaApiRequest = {
   upload: (formData: FormData) => http.post<UploadImageResType>('/media/upload', formData)
 }

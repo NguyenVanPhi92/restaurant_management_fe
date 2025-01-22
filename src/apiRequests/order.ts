@@ -12,6 +12,7 @@ import {
 } from '@/schemaValidations/order.schema'
 import queryString from 'query-string'
 
+// Call API to Server
 const orderApiRequest = {
   createOrders: (body: CreateOrdersBodyType) => http.post<CreateOrdersResType>('/orders', body),
   getOrderList: (queryParams: GetOrdersQueryParamsType) =>

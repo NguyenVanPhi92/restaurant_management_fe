@@ -2,6 +2,7 @@ import authApiRequest from '@/apiRequests/auth'
 import jwt from 'jsonwebtoken'
 import { cookies } from 'next/headers'
 
+// Call API to Server Next.js
 export async function POST(request: Request) {
   const cookieStore = cookies()
   const refreshToken = cookieStore.get('refreshToken')?.value

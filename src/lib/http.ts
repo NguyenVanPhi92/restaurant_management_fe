@@ -35,8 +35,11 @@ export class EntityError extends HttpError {
     this.payload = payload
   }
 }
+
 let clientLogoutRequest: null | Promise<any> = null
 const isClient = typeof window !== 'undefined' //Check current code running on server or client
+
+// Create Request send to server
 const request = async <Response>(
   method: 'GET' | 'POST' | 'PUT' | 'DELETE',
   url: string,
@@ -124,7 +127,7 @@ const request = async <Response>(
   return data
 }
 
-// create api method
+// Create API method
 const http = {
   get<Response>(url: string, options?: Omit<CustomOptions, 'body'> | undefined) {
     return request<Response>('GET', url, options)
