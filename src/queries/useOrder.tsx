@@ -2,6 +2,9 @@ import orderApiRequest from '@/apiRequests/order'
 import { GetOrdersQueryParamsType, PayGuestOrdersBodyType, UpdateOrderBodyType } from '@/schemaValidations/order.schema'
 import { useMutation, useQuery } from '@tanstack/react-query'
 
+// useQuery - Get
+// useMutation: POST, PUT, DELETE
+// useQueryClient: Invalidate/refresh cache when data change Ex: Add, Update, Delete
 export const useUpdateOrderMutation = () => {
   return useMutation({
     mutationFn: ({ orderId, ...body }: UpdateOrderBodyType & { orderId: number }) =>

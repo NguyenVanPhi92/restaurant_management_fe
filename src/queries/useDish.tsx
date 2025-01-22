@@ -2,6 +2,9 @@ import dishApiRequest from '@/apiRequests/dish'
 import { UpdateDishBodyType } from '@/schemaValidations/dish.schema'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
+// useQuery - Get
+// useMutation: POST, PUT, DELETE
+// useQueryClient: Invalidate/refresh cache when data change Ex: Add, Update, Delete
 export const useDishListQuery = () => {
   return useQuery({ queryKey: ['dishes'], queryFn: dishApiRequest.list })
 }

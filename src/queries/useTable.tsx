@@ -2,6 +2,9 @@ import tableApiRequest from '@/apiRequests/table'
 import { UpdateTableBodyType } from '@/schemaValidations/table.schema'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
+// useQuery - Get
+// useMutation: POST, PUT, DELETE
+// useQueryClient: Invalidate/refresh cache when data change Ex: Add, Update, Delete
 export const useTableListQuery = () => {
   return useQuery({ queryKey: ['tables'], queryFn: tableApiRequest.list })
 }
