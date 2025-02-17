@@ -37,3 +37,11 @@
 - Cung cấp Open Graph phục vụ các mạng xã hội Facebook, Twitter (cái này chỉ cần ở mức độ cơ bản là được).
 - Thêm các metadata file: `robots.txt`, `sitemap.xml`, `favicon.ico`.
 - Thêm website vào Google Search Console, Google Analytics.
+
+## Note
+
+1. Những page cần login mới vào được như /manage, gọi món, profile, detail,... thì không cần SEO: tức là không cần SSR, và noindex data. Nhưng nên có thẻ title, meta description
+2. Page 'use client' thì không thêm meta data tag được, vậy nên phải để page là server side render
+3. Canonial link nhớ thêm `/en` hay `/vi` vào
+
+Sitemap.xml: là bản đồ website giúp search engine tìm kiêm bài viết nhanh hơn
